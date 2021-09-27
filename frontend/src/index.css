@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Pristina", source-code-pro, Menlo, Monaco, Consolas,
+    "Courier New", monospace;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: #f16121;
+  font-weight: 500;
+  text-transform: uppercase;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+nav a {
+  color: white;
+  margin: 0 8px;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.auth-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.center-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profile-image {
+  position: relative;
+  background: #000;
+  transition: 0.5s ease all;
+}
+
+.changePP input {
+  display: none;
+}
+
+.changePP {
+  cursor: pointer;
+  color: #1890FF;
+}
