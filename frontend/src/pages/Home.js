@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <h1>Home</h1>
-      <ul className="d-flex">
-        <Link className="m-2 border p-2 bg-dark text-white" to="/user/profile">
-          Profile
-        </Link>
+      <ul className="container d-flex flex-column">
         <Link className="m-2 border p-2 bg-dark text-white" to="/user/history">
           History
         </Link>

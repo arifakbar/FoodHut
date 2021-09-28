@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -13,22 +14,35 @@ code {
 }
 
 nav {
-  position: sticky;
   top: 0;
   background-color: #f16121;
   font-weight: 500;
   text-transform: uppercase;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   z-index: 100;
 }
 
 nav a {
   color: white;
-  margin: 0 8px;
 }
 
-nav a:hover {
+.nav-link {
   color: white;
+}
+
+.nav-link:hover,
+nav a:hover {
+  color: black;
+}
+
+.nav-link:focus {
+  color: white;
+}
+
+@media (max-width: 991px) {
+  .dropdown-menu-end[data-mdb-popper] {
+    left: 0;
+    right: auto;
+  }
 }
 
 .auth-form {
@@ -58,5 +72,5 @@ nav a:hover {
 
 .changePP {
   cursor: pointer;
-  color: #1890FF;
+  color: #1890ff;
 }

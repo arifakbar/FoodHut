@@ -18,33 +18,146 @@ function Nav(props) {
   };
 
   return (
-    <nav className="d-flex justify-content-between p-4">
-      <Link to="/">Food Hut</Link>
-      <div className="d-flex gap-3">
-        <Link to="/">Home</Link>
-        <Link to="/">Menu</Link>
-        <Link to="/">About</Link>
-        <Link to="/">Contact</Link>
-      </div>
-      <div className="d-flex gap-3">
-        {user && user.token ? (
-          <button
-            onClick={handleLogout}
-            className="border-0 text-white"
-            style={{
-              background: "inherit",
-              fontWeight: "600",
-              cursor: "pointer",
-            }}
-          >
-            LOGOUT ( {user.name ? user.name : user.email} )
-          </button>
-        ) : (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Register</Link>
-          </>
-        )}
+    <nav
+      className="navbar navbar-expand-lg"
+      style={{ backgroundColor: "#f16121", position: "sticky" }}
+    >
+      <div className="container-fluid">
+        <Link to="/" className=".navbar-brand text-white m-0 h5">
+          FOOD HUT
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i className="fas fa-bars"></i>
+        </button>
+        <div
+          className="collapse navbar-collapse justify-content-center"
+          id="navbarNavAltMarkup"
+          s
+          style={{ width: "80%" }}
+        >
+          <div className="navbar-nav">
+            <Link className="nav-link active" aria-current="page" to="/">
+              Home
+            </Link>
+            <Link className="nav-link" to="/">
+              Menu
+            </Link>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-mdb-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categories
+              </a>
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <Link className="dropdown-item" to="/">
+                    Lunch
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/">
+                    Dinner
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/">
+                    Soft Drinks
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <Link className="nav-link" to="/">
+              About
+            </Link>
+            <Link className="nav-link" to="/">
+              Contact
+            </Link>
+          </div>
+        </div>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav ms-auto">
+            <Link className="nav-link text-reset me-3" to="/">
+              <i className="fas fa-shopping-cart text-dark"></i>
+              <span
+                className="
+                  badge
+                  rounded-pill
+                  badge-notification
+                  bg-white
+                  text-danger
+                "
+              >
+                0
+              </span>
+            </Link>
+            {user && user.token ? (
+              <>
+                <a
+                  className="
+                dropdown-toggle
+                d-flex
+                align-items-center
+                hidden-arrow
+                me-3
+              "
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="https://mdbootstrap.com/img/new/avatars/2.jpg"
+                    className="rounded-circle"
+                    height="25"
+                    alt=""
+                    loading="lazy"
+                  />
+                </a>
+                <ul
+                  className="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <Link className="dropdown-item" to="/user/profile">
+                      My profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout} className="dropdown-item">
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <>
+                <Link className="nav-link active" to="/signup">
+                  Register
+                </Link>
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </nav>
   );
