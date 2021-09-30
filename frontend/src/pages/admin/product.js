@@ -2,13 +2,13 @@ import React from "react";
 
 import AdminSideNav from "../../components/adminSideNav";
 
-function AdminDashboard() {
+function Product() {
   return (
     <div>
       <AdminSideNav />
-      <h1 className="text-center">Dashboard</h1>
+      <h1 className="text-center">Product</h1>
     </div>
   );
 }
 
-export default AdminDashboard;
+export default Product;

@@ -20,6 +20,14 @@ import Order from "./pages/user/orders";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import UserProfile from "./pages/user/profile";
 import ChangeName from "./pages/user/changeName";
+import Product from "./pages/admin/product";
+import Products from "./pages/admin/products";
+import Category from "./pages/admin/category";
+import SubCategory from "./pages/admin/subCategory";
+import Coupons from "./pages/admin/coupons";
+import AdminResetPassword from "./pages/admin/adminResetPassword";
+import EditCategory from "./pages/admin/editcategory";
+import EditSubCategory from "./pages/admin/editSubCategory";
 
 import { auth } from "./firebase/firebase";
 import { currentUserInfo } from "./actions/index";
@@ -56,6 +64,26 @@ function App(props) {
         <UserRoute path="/user/profile" exact component={UserProfile} />
         <UserRoute path="/user/changeName" exact component={ChangeName} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
+        <AdminRoute path="/admin/product" exact component={Product} />
+        <AdminRoute path="/admin/products" exact component={Products} />
+        <AdminRoute path="/admin/category" exact component={Category} />
+        <AdminRoute path="/admin/sub-category" exact component={SubCategory} />
+        <AdminRoute path="/admin/coupons" exact component={Coupons} />
+        <AdminRoute
+          path="/edit-category/:slug"
+          exact
+          component={EditCategory}
+        />
+        <AdminRoute
+          path="/admin/resetPassword"
+          exact
+          component={AdminResetPassword}
+        />
+        <AdminRoute
+          path="/edit-sub-category/:slug"
+          exact
+          component={EditSubCategory}
+        />
       </Switch>
       {/* <Footer /> */}
     </>

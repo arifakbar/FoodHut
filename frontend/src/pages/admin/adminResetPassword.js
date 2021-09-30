@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 import { auth } from "../../firebase/firebase";
-import UserSideNav from "../../components/userSideNav";
+import AdminSideNav from "../../components/adminSideNav";
 
-function ResetPassword(props) {
+function AdminResetPassword(props) {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ function ResetPassword(props) {
 
   return (
     <div className="container">
-      <UserSideNav />
+      <AdminSideNav />
       <form
         className="border p-5 auth-form"
         style={{ width: "80%" }}
@@ -58,4 +58,4 @@ function ResetPassword(props) {
   );
 }
 
-export default ResetPassword;
+export default AdminResetPassword;

@@ -40,7 +40,6 @@ function Nav(props) {
         <div
           className="collapse navbar-collapse justify-content-center"
           id="navbarNavAltMarkup"
-          s
           style={{ width: "80%" }}
         >
           <div className="navbar-nav">
@@ -50,38 +49,6 @@ function Nav(props) {
             <Link className="nav-link" to="/">
               Menu
             </Link>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Categories
-              </a>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li>
-                  <Link className="dropdown-item" to="/">
-                    Lunch
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/">
-                    Dinner
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/">
-                    Soft Drinks
-                  </Link>
-                </li>
-              </ul>
-            </li>
             <Link className="nav-link" to="/">
               About
             </Link>
@@ -135,9 +102,16 @@ function Nav(props) {
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <Link className="dropdown-item" to="/user/profile">
-                      My profile
-                    </Link>
+                    {user && user.token && user.role === "subscriber" && (
+                      <Link className="dropdown-item" to="/user/profile">
+                        My profile
+                      </Link>
+                    )}
+                    {user && user.token && user.role === "admin" && (
+                      <Link className="dropdown-item" to="/admin/dashboard">
+                        Dashboard
+                      </Link>
+                    )}
                   </li>
                   <li>
                     <button onClick={handleLogout} className="dropdown-item">
