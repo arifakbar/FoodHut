@@ -41,6 +41,7 @@ nav a:hover {
 
 @media (max-width: 991px) {
   .dropdown-menu-end[data-mdb-popper] {
+    top: 252px;
     left: 0;
     right: auto;
   }
@@ -88,7 +89,7 @@ nav a:hover {
   flex-direction: column;
   gap: 25px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-  z-index: 100;
+  z-index: 1;
 }
 
 .sideNav a {

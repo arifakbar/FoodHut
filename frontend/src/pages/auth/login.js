@@ -44,7 +44,7 @@ function Login(props) {
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
       const res = await createOrUpdateUser(idTokenResult.token);
-      props.loggedInUser(idTokenResult, res);
+      await props.loggedInUser(idTokenResult, res);
       toast.success("Logged in successfully.");
     } catch (err) {
       console.log(err);

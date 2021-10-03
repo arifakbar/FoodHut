@@ -30,14 +30,13 @@ function RegisterComplete(props) {
         email,
         window.location.href
       );
-
       if (result.user.emailVerified) {
         window.localStorage.removeItem("emailForRegistration");
         let user = auth.currentUser;
         await user.updatePassword(password);
         const idTokenResult = await user.getIdTokenResult();
         const res = await createOrUpdateUser(idTokenResult.token);
-        props.loggedInUser(idTokenResult, res);
+        await props.loggedInUser(idTokenResult, res);
         toast.success("Registered successfully.");
         history.push("/");
       }

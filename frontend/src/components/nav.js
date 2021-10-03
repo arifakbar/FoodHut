@@ -18,11 +18,11 @@ function Nav(props) {
   };
 
   return (
-    <nav
-      className="navbar navbar-expand-lg"
-      style={{ backgroundColor: "#f16121", position: "sticky" }}
-    >
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg" style={{ position: "sticky" }}>
+      <div
+        className="container-fluid"
+        style={{ background: "#f16121", zIndex: 2 }}
+      >
         <Link to="/" className=".navbar-brand text-white m-0 h5">
           FOOD HUT
         </Link>
