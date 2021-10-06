@@ -5,7 +5,6 @@ const slugify = require("slugify");
 exports.getAllSubCategories = async (req, res, next) => {
   try {
     const subs = await SubCategory.find().sort({ createdAt: -1 });
-    console.log(subs);
     res.status(200).json({
       data: subs,
       message: "Sub categories fetched successfully",
@@ -80,5 +79,20 @@ exports.deleteSubCategory = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ err: "Some error occured." });
+  }
+};
+
+exports.getSubCategoryByParent = async (req, res, next) => {
+  const { id } = req.params;
+  console.log("P " + id);
+  try {
+    const subs = await SubCategory.find({ parent: id });
+    res.status(200).json({
+      data: subs,
+      message: "Sub-Category by parent fetched successfully.",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
   }
 };

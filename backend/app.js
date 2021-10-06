@@ -9,10 +9,11 @@ require("dotenv").config();
 const authRoutes = require("./routes/auth");
 const categoryRoutes = require("./routes/category");
 const subcategoryRoutes = require("./routes/subcategory");
+const productRoutes = require("./routes/product");
+const cloudinaryRoutes = require("./routes/cloudinary");
 
 const app = express();
 
-//db -> 23CZ3foMoJSRVuhF
 mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
@@ -32,6 +33,8 @@ app.use(cors());
 app.use("/api", authRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", subcategoryRoutes);
+app.use("/api", productRoutes);
+app.use("/api", cloudinaryRoutes);
 
 //port
 const port = process.env.PORT || 8000;

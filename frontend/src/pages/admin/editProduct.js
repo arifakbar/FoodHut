@@ -8,16 +8,19 @@ import AdminSideNav from "../../components/adminSideNav";
 import { getAllCategories } from "../../functions/category";
 import { getSubCategoryByParent } from "../../functions/subCategory";
 import CloudinaryUpload from "../../components/forms/cloudinaryUpload";
-import { createProduct } from "../../functions/product";
+import { updateProduct, getProduct } from "../../functions/product";
 import history from "../../history";
 
 const { Option } = Select;
 
-function Product(props) {
+function EditProduct(props) {
   const { user } = props;
+  const { productId } = props.match.params;
   const [loading, setLoading] = useState(false);
   const [categories, setCategoies] = useState([]);
   const [subs, setSubs] = useState([]);
+  const [arrayOfSubs, setArrayOfSubs] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -30,7 +33,33 @@ function Product(props) {
 
   useEffect(() => {
     loadCategories();
+    loadProduct();
   }, []);
+
+  const loadProduct = async () => {
+    setLoading(true);
+    try {
+      const res = await getProduct(productId);
+      setTitle(res.data.data.title);
+      setDescription(res.data.data.description);
+      setPrice(res.data.data.price);
+      setCategory(res.data.data.category._id);
+      setSelectedCategory(res.data.data.category._id);
+      setSubCategories(res.data.data.subCategory);
+      setQuantity(res.data.data.quantity);
+      setSold(res.data.data.sold);
+      setImages(res.data.data.images);
+      const res2 = await getSubCategoryByParent(res.data.data.category._id);
+      setSubs(res2.data.data);
+      let arr = [];
+      res.data.data.subCategory.map((s) => arr.push(s._id));
+      setArrayOfSubs((prev) => arr);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      toast.error(err.message);
+    }
+  };
 
   const loadCategories = async () => {
     setLoading(true);
@@ -46,12 +75,16 @@ function Product(props) {
   };
 
   const handleCategoryChange = async (id) => {
-    setCategory(id);
+    setSelectedCategory(id);
     setSubCategories([]);
     setLoading(true);
     try {
       const res = await getSubCategoryByParent(id);
       setSubs(res.data.data);
+      if (category === id) {
+        loadProduct();
+      }
+      setArrayOfSubs([]);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -66,17 +99,16 @@ function Product(props) {
       title: title,
       description: description,
       price: price,
-      category: category,
-      subCategory: subCategories,
+      category: selectedCategory ? selectedCategory : category,
+      subCategory: arrayOfSubs,
       quantity: quantity,
       sold: sold,
       images: images,
     };
     try {
       setLoading(true);
-      const res = await createProduct(user.token, values);
-      console.log(res.data.data);
-      toast.success(`${res.data.data.title} created successfully.`);
+      const res = await updateProduct(user.token, values, productId);
+      toast.success(`${res.data.data.title} updated successfully.`);
       history.push("/admin/products");
       setLoading(false);
     } catch (err) {
@@ -98,7 +130,7 @@ function Product(props) {
           className="d-flex flex-column align-items-center "
           style={{ gap: "15px" }}
         >
-          <h2 className="my-3">Add Product</h2>
+          <h2 className="my-3">Edit Product</h2>
           <form
             onSubmit={handleSubmit}
             className="border p-5 overflow-auto"
@@ -140,7 +172,7 @@ function Product(props) {
               <label className="form-label">Category</label>
               <select
                 className="form-control"
-                value={category}
+                value={selectedCategory}
                 onChange={(e) => handleCategoryChange(e.target.value)}
               >
                 <option>Please select</option>
@@ -154,26 +186,25 @@ function Product(props) {
                   })}
               </select>
             </div>
-            {subs.length > 0 && (
-              <div className="mb-3">
-                <label className="form-label">Sub Category</label>
-                <Select
-                  mode="multiple"
-                  style={{ width: "100%" }}
-                  value={subCategories}
-                  onChange={(value) => setSubCategories(value)}
-                  placeholder="Select Sub-category"
-                >
-                  {subs.map((s) => {
+            <div className="mb-3">
+              <label className="form-label">Sub Category</label>
+              <Select
+                mode="multiple"
+                style={{ width: "100%" }}
+                value={arrayOfSubs}
+                onChange={(value) => setArrayOfSubs(value)}
+                placeholder="Select Sub-category"
+              >
+                {subs &&
+                  subs.map((s) => {
                     return (
                       <Option value={s._id} key={s._id}>
                         {s.name}
                       </Option>
                     );
                   })}
-                </Select>
-              </div>
-            )}
+              </Select>
+            </div>
             <div className="mb-3">
               <label className="form-label">Quantity : </label>
               <input
@@ -203,7 +234,7 @@ function Product(props) {
               className="btn btn-raised text-white btn-block"
               style={{ background: "#f16121" }}
             >
-              ADD
+              UPDATE
             </button>
           </form>
         </div>
@@ -216,4 +247,4 @@ const mapStateToProps = (state) => {
   return { user: state.user };
 };
 
-export default connect(mapStateToProps)(Product);
+export default connect(mapStateToProps)(EditProduct);

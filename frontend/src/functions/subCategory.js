@@ -42,3 +42,9 @@ export const deleteSubCategory = async (authToken, slug) => {
     }
   );
 };
+
+export const getSubCategoryByParent = async (id) => {
+  return await axios.get(
+    process.env.REACT_APP_API + "/sub-category-by-parent/" + id
+  );
+};

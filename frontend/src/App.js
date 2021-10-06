@@ -28,6 +28,7 @@ import Coupons from "./pages/admin/coupons";
 import AdminResetPassword from "./pages/admin/adminResetPassword";
 import EditCategory from "./pages/admin/editcategory";
 import EditSubCategory from "./pages/admin/editSubCategory";
+import EditProduct from "./pages/admin/editProduct";
 
 import { auth } from "./firebase/firebase";
 import { currentUserInfo } from "./actions/index";
@@ -83,6 +84,11 @@ function App(props) {
           path="/edit-sub-category/:slug"
           exact
           component={EditSubCategory}
+        />
+        <AdminRoute
+          path="/edit-product/:productId"
+          exact
+          component={EditProduct}
         />
       </Switch>
       {/* <Footer /> */}

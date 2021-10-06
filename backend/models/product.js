@@ -33,7 +33,7 @@ const productSchema = new Schema(
     },
     subCategory: [{ type: ObjectId, ref: "SubCategory" }],
     quantity: Number,
-    Sold: { type: Number, default: 0 },
+    sold: { type: Number, default: 0 },
     images: Array,
     //     ratings: [{ star: Number, postedBy: { type: ObjectId, ref: "User" } }],
   },
