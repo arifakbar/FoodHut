@@ -14,12 +14,6 @@ router.get(
 
 router.post("/coupon", [authCheck, adminCheck], couponController.addCoupon);
 
-router.put(
-  "/coupon/:couponId",
-  [authCheck, adminCheck],
-  couponController.updateCoupon
-);
-
 router.delete(
   "/coupon/:couponId",
   [authCheck, adminCheck],

@@ -43,28 +43,6 @@ exports.addCoupon = async (req, res, next) => {
   }
 };
 
-exports.updateCoupon = async (req, res, next) => {
-  try {
-    const { couponId } = req.params;
-    const { name, discount, expiry } = req.body;
-    const updatedCoupon = await Coupon.findByIdAndUpdate(
-      couponId,
-      {
-        name: name,
-        expiry: expiry,
-        discount: discount,
-      },
-      { new: true }
-    );
-    res
-      .status(201)
-      .json({ data: updatedCoupon, message: "Coupon updated successfully" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ err: "Some error occured" });
-  }
-};
-
 exports.deleteCoupon = async (req, res, next) => {
   try {
     const { couponId } = req.params;

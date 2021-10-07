@@ -26,26 +26,6 @@ export const addCoupon = async (authToken, name, discount, expiry) => {
   );
 };
 
-export const updateCoupon = async (
-  authToken,
-  name,
-  discount,
-  expiry,
-  couponId
-) => {
-  return await axios.put(
-    process.env.REACT_APP_API + "/coupon/" + couponId,
-    {
-      name: name,
-      discount: discount,
-      expiry: expiry,
-    },
-    {
-      headers: { authToken: authToken },
-    }
-  );
-};
-
 export const deleteCoupon = async (authToken, couponId) => {
   return await axios.delete(process.env.REACT_APP_API + "/coupon/" + couponId, {
     headers: { authToken: authToken },

@@ -43,7 +43,7 @@ function Coupons(props) {
       toast.success(`${res.data.data.name} coupon created successfully.`);
       setLoading(false);
       setName("");
-      setDiscount("");
+      setDiscount(0);
       setExpiry("");
       loadCoupons();
     } catch (err) {
@@ -152,20 +152,12 @@ function Coupons(props) {
                       key={c._id}
                     >
                       {c.name.toUpperCase() + " --> " + c.discount + "%"}
-                      <div className="d-flex" style={{ gap: "5px" }}>
-                        <Link
-                          className="btn btn-raised btn-primary"
-                          to={`/edit-sub-category/${c._id}`}
-                        >
-                          Edit
-                        </Link>
-                        <button
-                          className="btn btn-raised btn-danger"
-                          onClick={() => handleDelete(c)}
-                        >
-                          Delete
-                        </button>
-                      </div>
+                      <button
+                        className="btn btn-raised btn-danger"
+                        onClick={() => handleDelete(c)}
+                      >
+                        Delete
+                      </button>
                     </li>
                   );
                 })}
