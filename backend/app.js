@@ -11,6 +11,7 @@ const categoryRoutes = require("./routes/category");
 const subcategoryRoutes = require("./routes/subcategory");
 const productRoutes = require("./routes/product");
 const cloudinaryRoutes = require("./routes/cloudinary");
+const couponRouter = require("./routes/coupon");
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use("/api", categoryRoutes);
 app.use("/api", subcategoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", cloudinaryRoutes);
+app.use("/api", couponRouter);
 
 //port
 const port = process.env.PORT || 8000;

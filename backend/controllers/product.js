@@ -4,8 +4,10 @@ const slugify = require("slugify");
 exports.getAllProducts = async (req, res, next) => {
   try {
     const products = await Product.find()
+      .limit(parseInt(req.params.count))
       .populate("category")
-      .populate("subCategory");
+      .populate("subCategory")
+      .sort({ createdAt: -1 });
     res
       .status(200)
       .json({ data: products, message: "Products fetched successfully." });

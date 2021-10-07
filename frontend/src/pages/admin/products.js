@@ -23,7 +23,7 @@ function Products(props) {
   const loadProducts = async () => {
     try {
       setLoading(true);
-      const res = await getAllProducts();
+      const res = await getAllProducts(10);
       setProducts(res.data.data);
       setLoading(false);
     } catch (err) {

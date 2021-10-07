@@ -43,7 +43,7 @@ function EditSubCategory(props) {
     } catch (err) {
       console.log(err);
       setLoading(false);
-      toast.errpr(err.message);
+      toast.error(err.message);
     }
   };
 

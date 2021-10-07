@@ -49,14 +49,13 @@ function SubCategory(props) {
       setLoading(false);
     } catch (err) {
       console.log(err);
-      toast.err(err.message);
+      toast.error(err.message);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(category);
       const res = await addSubCategory(user.token, name, category);
       toast.success(`${res.data.data.name} sub-category created successfully.`);
       setLoading(false);
