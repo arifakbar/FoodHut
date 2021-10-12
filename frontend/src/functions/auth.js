@@ -49,6 +49,31 @@ export const updateUsername = async (username, authToken) => {
   );
 };
 
+export const sendOTP = async (authToken, number) => {
+  return await axios.post(
+    process.env.REACT_APP_API + "/user/sendOTP",
+    {
+      number: number,
+    },
+    {
+      headers: { authToken: authToken },
+    }
+  );
+};
+
+export const verifyOTP = async (authToken, number, OTP) => {
+  return await axios.post(
+    process.env.REACT_APP_API + "/user/verifyOTP",
+    {
+      number: number,
+      OTP: OTP,
+    },
+    {
+      headers: { authToken: authToken },
+    }
+  );
+};
+
 export const roleBasedRedirect = (res) => {
   if (history.location.state) history.push(history.location.state.from);
   else {

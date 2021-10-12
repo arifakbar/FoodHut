@@ -29,6 +29,7 @@ import AdminResetPassword from "./pages/admin/adminResetPassword";
 import EditCategory from "./pages/admin/editcategory";
 import EditSubCategory from "./pages/admin/editSubCategory";
 import EditProduct from "./pages/admin/editProduct";
+import ChangePhoneNumber from "./pages/user/changePhoneNumber";
 
 import { auth } from "./firebase/firebase";
 import { currentUserInfo } from "./actions/index";
@@ -64,6 +65,11 @@ function App(props) {
         <UserRoute path="/user/orders" exact component={Order} />
         <UserRoute path="/user/profile" exact component={UserProfile} />
         <UserRoute path="/user/changeName" exact component={ChangeName} />
+        <UserRoute
+          path="/user/changeNumber"
+          exact
+          component={ChangePhoneNumber}
+        />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
         <AdminRoute path="/admin/product" exact component={Product} />
         <AdminRoute path="/admin/products" exact component={Products} />

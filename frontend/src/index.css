@@ -15,7 +15,7 @@ code {
 
 nav {
   top: 0;
-  background-color: #f16121;
+  background: transparent;
   font-weight: 500;
   text-transform: uppercase;
   z-index: 100;
@@ -124,6 +124,373 @@ nav a:hover {
   left: -150px;
 }
 
+.home-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("./images/Group\ 22.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100vh;
+  width: 100%;
+}
+
+.home-about {
+  height: 90vh;
+  background: #ececec;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home-about-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: center;
+  gap: 25px;
+}
+
+.home-about-content h1 {
+  font-size: 65px;
+  font-family: Sail;
+  color: #da9816;
+  margin: 0;
+}
+
+.home-about-content h5 {
+  font-size: 18px;
+  font-family: Josefin Sans, Regular Roman;
+}
+
+.home-about-content p {
+  width: 65%;
+  text-align: center;
+  font-family: Josefin Sans, Light Roman;
+  opacity: 0.8;
+}
+
+.home-about-content button {
+  background: inherit;
+  border: 2px solid #da9816;
+  color: #da9816;
+  padding: 15px 25px;
+  transition: 0.3s ease-in-out all;
+  font-family: Josefin Sans, Regular Roman;
+}
+
+.home-about-content button:hover {
+  background-color: #da9816;
+  color: #ececec;
+}
+
+.home-about-image {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-about-image img {
+  height: 95%;
+  width: 70%;
+  transition: 0.3s ease-in-out all;
+}
+
+.home-about-image img:hover {
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
+  /* transform: scale(1.2); */
+}
+
+.home-cuisine {
+  display: flex;
+  align-items: center;
+  height: 90vh;
+}
+
+.home-cuisine-image {
+  position: relative;
+  height: 100%;
+  width: 40%;
+}
+
+.home-cuisine-image img {
+  position: absolute;
+  top: -12%;
+  left: 0;
+  height: 100%;
+  width: 90%;
+}
+
+.home-cuisine-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 40%;
+}
+
+.home-cuisine-content h1 {
+  font-size: 55px;
+  font-family: Sail;
+  color: #da9816;
+  margin: 0;
+}
+
+.home-cuisine-content h4 {
+  padding-left: 190px;
+  font-size: 55px;
+  margin: -15px;
+  font-weight: 600;
+  font-family: Invitation Script LIMITED FREE VERSION, Regular;
+  transform: rotateZ(-10deg);
+}
+
+.home-cuisine-content h5 {
+  font-weight: 550;
+  font-size: 15px;
+  margin: 15px 0;
+  width: 80%;
+  font-family: Josefin Sans, Regular Roman;
+}
+
+.home-cuisine-content p {
+  font-size: 15px;
+  margin: 10px 0;
+  width: 80%;
+  font-family: Josefin Sans, Regular Roman;
+  opacity: 0.8;
+}
+
+.home-cuisine-content button {
+  background: inherit;
+  border: 2px solid #da9816;
+  color: #da9816;
+  padding: 10px 20px;
+  transition: 0.3s ease-in-out all;
+  margin: 10px 0;
+  font-family: Josefin Sans, Regular Roman;
+}
+
+.home-cuisine-content button:hover {
+  background-color: #da9816;
+  color: #ececec;
+}
+
+.home-drinks {
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.home-drinks-image {
+  height: 100%;
+  width: 45%;
+}
+
+.home-drinks-image img {
+  height: 100%;
+  width: 100%;
+}
+
+.home-drinks-content {
+  width: 55%;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.home-drinks-content h1 {
+  font-size: 55px;
+  font-family: Sail;
+  color: #da9816;
+  margin: 0;
+}
+
+.home-drinks-content h3 {
+  padding-left: 190px;
+  font-size: 55px;
+  margin: -25px;
+  font-weight: 600;
+  font-family: Invitation Script LIMITED FREE VERSION, Regular;
+  transform: rotateZ(-10deg);
+}
+
+.home-drinks-content h4 {
+  font-weight: 550;
+  font-size: 15px;
+  margin-top: 15px;
+  width: 80%;
+  color: #da9816;
+  font-family: Josefin Sans, Regular Roman;
+  width: 45%;
+}
+
+.home-drinks-content h5 {
+  font-weight: 550;
+  font-size: 15px;
+  width: 80%;
+  font-family: Josefin Sans, Regular Roman;
+  width: 45%;
+}
+
+.home-drinks-content p {
+  font-size: 15px;
+  width: 45%;
+  font-family: Josefin Sans, Regular Roman;
+  opacity: 0.8;
+}
+
+.home-drinks-content button {
+  background: inherit;
+  border: 2px solid #da9816;
+  color: #da9816;
+  padding: 10px 20px;
+  transition: 0.3s ease-in-out all;
+  margin: 10px 0;
+  font-family: Josefin Sans, Regular Roman;
+}
+
+.home-drinks-content button:hover {
+  background-color: #da9816;
+  color: #ececec;
+}
+
+.home-dining {
+  height: 110vh;
+  padding: 5% 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.home-dining h1 {
+  font-size: 65px;
+  font-family: Sail;
+  color: #da9816;
+  margin: 0;
+}
+
+.home-dining h4 {
+  padding-left: 350px;
+  font-size: 55px;
+  margin-top: 5px;
+  margin-bottom: -65px;
+  font-weight: 600;
+  font-family: Invitation Script LIMITED FREE VERSION, Regular;
+  transform: rotateZ(-10deg);
+}
+
+.home-dining-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85%;
+  width: 90%;
+  background-color: #ececec;
+}
+
+.home-dining-banner-image {
+  height: 80%;
+  width: 50%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.home-dining-banner-image img {
+  width: 80%;
+  height: 100%;
+}
+
+.home-dining-banner-content {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.home-dining-banner-content h2 {
+  font-family: Josefin Sans;
+  font-size: 35px;
+}
+
+.home-dining-banner-content h5 {
+  font-family: Josefin Sans;
+  font-size: 15px;
+  width: 58%;
+}
+
+.home-dining-banner-content p {
+  font-family: Josefin Sans;
+  font-size: 12px;
+  width: 58%;
+  opacity: 0.8;
+}
+
+.home-dining-banner-content button {
+  background: inherit;
+  border: 2px solid #da9816;
+  color: #da9816;
+  padding: 10px 20px;
+  transition: 0.3s ease-in-out all;
+  margin: 10px 0;
+  font-family: Josefin Sans, Regular Roman;
+}
+
+.home-dining-banner-content button:hover {
+  background-color: #da9816;
+  color: #ececec;
+}
+
+.home-casual-elegance {
+  position: relative;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./images/Group\ 23.png");
+  background-size: 100% 100%;
+}
+
+.home-casual-elegance p {
+  position: absolute;
+  transform: rotateZ(270deg);
+  color: #daa455;
+  font-family: Sail;
+  margin: 0;
+  font-size: 55px;
+  left: -3%;
+  letter-spacing: 2px;
+}
+
+.home-casual-elegance > div {
+  margin: 0;
+  height: 75%;
+  width: 75%;
+  border: 2px dashed #da9816;
+}
+
+.most-rated {
+  width: 100%;
+  height: 50vh;
+  border-top: 2px dashed #da9816;
+  border-bottom: 2px dashed #da9816;
+}
+
 @media (max-width: 580px) {
   .change-search {
     align-items: start !important;
@@ -132,5 +499,55 @@ nav a:hover {
   .change-search form {
     margin: 2px;
     width: 100%;
+  }
+  .home-casual-elegance p {
+    font-size: 40px;
+    left: -18%;
+  }
+  .home-banner {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  .home-casual-elegance {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  .home-about {
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+  }
+  .home-about-content {
+    width: 100%;
+    padding: 10px;
+  }
+  .home-about-content h1 {
+    font-size: 40px;
+  }
+  .home-about-content h5 {
+    font-size: 13px;
+  }
+  .home-about-content p {
+    width: 100%;
+    font-size: 12px;
+  }
+  .home-about-image {
+    width: 100%;
+  }
+  .home-about-image img {
+    width: 100%;
+  }
+  .home-cuisine-image {
+    display: none;
+  }
+  .home-cuisine-content {
+    width: 100%;
+    padding: 15px 0;
+    background-image: url("./images//our-food-bg-5.png");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
   }
 }

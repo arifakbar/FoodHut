@@ -20,7 +20,7 @@ const userSchema = new Schema(
       default: [],
     },
     address: String,
-    phoneNumber: Number,
+    phoneNumber: { type: Number, default: 0 },
     /*
         wishlist : [{
                 type:ObjectId,

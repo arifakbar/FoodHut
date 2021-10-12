@@ -65,3 +65,28 @@ exports.updateUsername = async (req, res, next) => {
     });
   }
 };
+
+exports.sendOTP = async (req, res, next) => {
+  const { number } = req.body;
+  try {
+    console.log("number : " + number);
+    res.status(200).json({ data: number, message: "OTP sent successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.verifyOTP = async (req, res, next) => {
+  const { number, OTP } = req.body;
+  try {
+    console.log("number : " + number);
+    console.log("OTP : " + OTP);
+    res
+      .status(200)
+      .json({ data: number, message: "Phone number updated successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};

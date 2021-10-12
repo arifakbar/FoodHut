@@ -6,6 +6,7 @@ import UserSideNav from "../../components/userSideNav";
 
 function UserProfile(props) {
   const { user } = props;
+  const [image, setImage] = useState("");
   return (
     <>
       <UserSideNav />
@@ -30,10 +31,6 @@ function UserProfile(props) {
               style={{ objectFit: "cover", height: "100%", width: "100%" }}
             />
           </div>
-          <label className="changePP">
-            <input type="file" />
-            Change Pic
-          </label>
           <p>
             <b>Email Address: </b>
             {user.email}
@@ -44,7 +41,7 @@ function UserProfile(props) {
             <Link to="/user/changeName">Change Username</Link>
           </p>
           <p>
-            <b>Phone Number :</b> Enter your phone number &nbsp;
+            <b>Phone Number :</b> {user.phoneNumber} &nbsp;
             <Link to="/user/changeNumber">Change Number</Link>
           </p>
         </div>

@@ -21,4 +21,8 @@ router.post(
 
 router.post("/update-username", [authCheck], authController.updateUsername);
 
+router.post("/user/sendOTP", [authCheck], authController.sendOTP);
+
+router.post("/user/verifyOTP", [authCheck], authController.verifyOTP);
+
 module.exports = router;
