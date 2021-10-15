@@ -4,7 +4,7 @@ import AdminSideNav from "../../components/adminSideNav";
 
 function AdminDashboard() {
   return (
-    <div>
+    <div className>
       <AdminSideNav />
       <h1 className="text-center">Dashboard</h1>
     </div>

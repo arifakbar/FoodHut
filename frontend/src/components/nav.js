@@ -23,7 +23,7 @@ function Nav(props) {
         className="container-fluid"
         style={{ background: "transparent", zIndex: 2 }}
       >
-        <Link to="/" className=".navbar-brand text-white m-0 h5">
+        <Link to="/" className=".navbar-brand text-black m-0 h5">
           FOOD HUT
         </Link>
         <button
@@ -46,20 +46,23 @@ function Nav(props) {
             <Link className="nav-link active" aria-current="page" to="/">
               Home
             </Link>
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/menu">
               Menu
             </Link>
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/reservation">
+              Reservation
+            </Link>
+            <Link className="nav-link" to="/about">
               About
             </Link>
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/contact">
               Contact
             </Link>
           </div>
         </div>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ms-auto">
-            <Link className="nav-link text-reset me-3" to="/">
+            <Link className="nav-link text-reset me-3" to="/cart">
               <i className="fas fa-shopping-cart text-dark"></i>
               <span
                 className="

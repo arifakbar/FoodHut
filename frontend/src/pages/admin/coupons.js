@@ -96,7 +96,7 @@ function Coupons(props) {
             onSubmit={handleSubmit}
           >
             <div className="mb-3">
-              <label className="form-label">Sub-Category Name</label>
+              <label className="form-label">Coupon Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -104,7 +104,7 @@ function Coupons(props) {
                 onChange={(e) => setName(e.target.value)}
                 min={6}
                 max={15}
-                toUpperCase
+                touppercase={true}
                 required
               />
             </div>

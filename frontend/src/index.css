@@ -16,27 +16,28 @@ code {
 nav {
   top: 0;
   background: transparent;
+  /* background: #f16121; */
   font-weight: 500;
   text-transform: uppercase;
   z-index: 100;
   height: 55px;
 }
 
-nav a {
+/* nav a {
   color: white;
-}
+} */
 
 .nav-link {
-  color: white;
+  color: black;
 }
 
 .nav-link:hover,
 nav a:hover {
-  color: black;
+  color: white;
 }
 
 .nav-link:focus {
-  color: white;
+  color: black;
 }
 
 @media (max-width: 991px) {
@@ -81,7 +82,7 @@ nav a:hover {
   position: fixed;
   left: 0;
   top: 55px;
-  background: #fff;
+  background: #091921;
   height: 100%;
   padding: 10px;
   width: 150px;
@@ -93,14 +94,14 @@ nav a:hover {
 }
 
 .sideNav a {
-  color: black;
+  color: #da9816;
   padding: 10px;
   transition: 0.5s ease all;
 }
 
 .sideNav a:hover {
-  background: #f16121;
-  color: #fff;
+  background: #da9816;
+  color: black;
 }
 
 .sn-toggler {
@@ -404,13 +405,24 @@ nav a:hover {
 .home-dining-banner-image {
   height: 80%;
   width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.home-dining-banner-image > div {
+  width: 80%;
+  height: 100%;
   overflow: hidden;
-  text-align: center;
 }
 
 .home-dining-banner-image img {
-  width: 80%;
   height: 100%;
+  width: 100%;
+  transition: 0.5s ease-in-out all;
+}
+
+.home-dining-banner-image img:hover {
+  transform: scale(1.2);
 }
 
 .home-dining-banner-content {
@@ -482,6 +494,14 @@ nav a:hover {
   height: 75%;
   width: 75%;
   border: 2px dashed #da9816;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.home-casual-elegance > div > h1 {
+  color: white;
+  font-family: Sail;
+  font-size: 65px;
 }
 
 .most-rated {
@@ -489,6 +509,114 @@ nav a:hover {
   height: 50vh;
   border-top: 2px dashed #da9816;
   border-bottom: 2px dashed #da9816;
+}
+
+/* Menu Section */
+
+.menu {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.menu-fastfood-images {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.menu-content {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.menu-content h1 {
+  font-family: Sail;
+  font-size: 65px;
+  letter-spacing: 1.5px;
+}
+
+.menu-content p {
+  font-family: Josefin Sans;
+  width: 60%;
+  text-align: center;
+}
+
+.menu-content small {
+  font-family: Josefin Sans;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c6811c;
+}
+
+.menu-button {
+  background: inherit;
+  border: 2px solid #da9816;
+  color: #da9816;
+  padding: 10px 20px;
+  transition: 0.3s ease-in-out all;
+  margin: 10px 0;
+  font-family: Josefin Sans, Regular Roman;
+}
+
+.menu-button:hover {
+  background: #da9816;
+  color: white;
+}
+
+.menu-drinks-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.menu-desserts {
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-desserts-images {
+  background: #000;
+  height: 49%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.menu-desserts-content {
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.menu-desserts-content h1 {
+  font-family: Sail;
+  font-size: 65px;
+  letter-spacing: 1.5px;
+}
+
+.menu-desserts-content small {
+  font-family: Josefin Sans;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c6811c;
 }
 
 @media (max-width: 580px) {

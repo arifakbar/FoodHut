@@ -30,6 +30,11 @@ import EditCategory from "./pages/admin/editcategory";
 import EditSubCategory from "./pages/admin/editSubCategory";
 import EditProduct from "./pages/admin/editProduct";
 import ChangePhoneNumber from "./pages/user/changePhoneNumber";
+import About from "./pages/about";
+import Menu from "./pages/menu";
+import Reservation from "./pages/reservation";
+import Contact from "./pages/contact";
+// import { Footer } from "antd/lib/layout/layout";
 
 import { auth } from "./firebase/firebase";
 import { currentUserInfo } from "./actions/index";
@@ -59,6 +64,10 @@ function App(props) {
         <Route path="/signup" exact component={Signup} />
         <Route path="/register/complete" exact component={RegisterComplete} />
         <Route path="/forget/password" exact component={ForgetPassword} />
+        <Route path="/about" exact component={About} />
+        <Route path="/menu" exact component={Menu} />
+        <Route path="/contact" exact component={Contact} />
+        <Route path="/reservation" exact component={Reservation} />
         <UserRoute path="/user/history" exact component={History} />
         <UserRoute path="/user/resetPassword" exact component={ResetPassword} />
         <UserRoute path="/user/wishlist" exact component={Wishlist} />

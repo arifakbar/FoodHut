@@ -4,7 +4,6 @@ import aboutImg from "../images/Image 2.png";
 import ourFood from "../images/our-food-bg-5.png";
 import ourDrink from "../images/our-drink.png";
 import diningImg from "../images/Image 3.png";
-
 import MostRated from "../components/Home/MostRated";
 
 function Home() {
@@ -85,7 +84,9 @@ function Home() {
         <h4>Enjoy your time</h4>
         <div className="home-dining-banner">
           <div className="home-dining-banner-image">
-            <img src={diningImg} alt="NF" />
+            <div>
+              <img src={diningImg} alt="NF" />
+            </div>
           </div>
           <div className="home-dining-banner-content">
             <h2>Private Dining Available</h2>
@@ -110,8 +111,11 @@ function Home() {
       </div>
       <div className="home-casual-elegance">
         <p>Casual Elegance</p>
-        <div></div>
+        <div>
+          <h1>Delivering To You !</h1>
+        </div>
       </div>
+      <br />
     </div>
   );
 }

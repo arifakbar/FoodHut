@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
+import { Spin } from "antd";
 
 import { auth } from "../../firebase/firebase";
 import history from "../../history";
 
 function ForgetPassword(props) {
   const { user } = props;
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user && user.token) {
@@ -25,41 +27,50 @@ function ForgetPassword(props) {
     };
 
     try {
+      setLoading(true);
       await auth.sendPasswordResetEmail(email, config);
       setEmail("");
       toast.success(`Check ${email} for password reset link.`);
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setLoading(false);
       toast.error(err.message);
     }
   };
 
   return (
     <div className="container">
-      <form
-        className="border p-5 auth-form"
-        style={{ width: "80%" }}
-        onSubmit={handleSubmit}
-      >
-        <h4 className="text-center mb-3">FORGOT PASSWORD</h4>
-        <div className="mb-3">
-          <label className="form-label">Email Address : </label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="Enter registered email address"
-          />
+      {loading ? (
+        <div className="center-spinner">
+          <Spin size="large" />
         </div>
-        <button
-          className="btn btn-raised text-white btn-block"
-          style={{ background: "#f16121" }}
+      ) : (
+        <form
+          className="border p-5 auth-form"
+          style={{ width: "80%" }}
+          onSubmit={handleSubmit}
         >
-          SEND EMAIL
-        </button>
-      </form>
+          <h4 className="text-center mb-3">FORGOT PASSWORD</h4>
+          <div className="mb-3">
+            <label className="form-label">Email Address : </label>
+            <input
+              type="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Enter registered email address"
+            />
+          </div>
+          <button
+            className="btn btn-raised text-white btn-block"
+            style={{ background: "#f16121" }}
+          >
+            SEND EMAIL
+          </button>
+        </form>
+      )}
     </div>
   );
 }
