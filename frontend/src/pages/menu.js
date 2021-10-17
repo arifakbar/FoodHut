@@ -53,27 +53,27 @@ function Menu() {
             alt="NF"
             style={{ position: "absolute", top: "0", right: "0" }}
           />
-          <h1>Fast Food</h1>
+          <h1>Snacks</h1>
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
             nonumy
           </p>
           <small>Lorem ipsum dolor sit amet, consetetur</small>
-          <button className="menu-button">View Fast Food</button>
+          <button className="menu-button">View Snacks</button>
         </div>
       </div>
       <br />
       <br />
       <div className="menu" style={{ height: "80vh", background: "#ececec" }}>
         <div className="menu-content" style={{ position: "relative" }}>
-          <h1>Full Meal</h1>
+          <h1>Full Course</h1>
           <img
             src={balckBg2}
             alt="NF"
             style={{ position: "absolute", top: "-10%", left: "0" }}
           />
           <small>Lorem ipsum dolor sit amet, consetetur</small>
-          <button className="menu-button">View Meals</button>
+          <button className="menu-button">View Full Course</button>
         </div>
         <div style={{ height: "100%", width: "50%" }}>
           <div style={{ height: "100%", width: "100%", overflow: "hidden" }}>
@@ -156,9 +156,9 @@ function Menu() {
           </div>
         </div>
         <div className="menu-desserts-content">
-          <h1>Desserts</h1>
+          <h1>Sweets</h1>
           <small>Lorem ipsum dolor sit amet, consetetur</small>
-          <button className="menu-button">View Desserts</button>
+          <button className="menu-button">View Sweets</button>
         </div>
         <div className="menu-desserts">
           <div className="menu-desserts-images">
