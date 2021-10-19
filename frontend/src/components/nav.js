@@ -23,8 +23,12 @@ function Nav(props) {
         className="container-fluid"
         style={{ background: "transparent", zIndex: 2 }}
       >
-        <Link to="/" className=".navbar-brand text-black m-0 h5">
-          FOOD HUT
+        <Link
+          to="/"
+          className=".navbar-brand text-black m-0 h5"
+          style={{ fontFamily: "Vivaldi", fontWeight: "800" }}
+        >
+          FH
         </Link>
         <button
           className="navbar-toggler"

@@ -28,6 +28,9 @@ function UserSideNav() {
       <Link to="/user/history">
         <div>Purchase History</div>
       </Link>
+      <Link to="/user/reservations">
+        <div>My Reservations</div>
+      </Link>
       <Link to="/user/resetPassword">
         <div>Reset Password</div>
       </Link>

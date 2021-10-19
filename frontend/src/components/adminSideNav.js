@@ -25,6 +25,9 @@ function AdminSideNav() {
       <Link to="/admin/dashboard">
         <div>Dashboard</div>
       </Link>
+      <Link to="/admin/reservations">
+        <div>Reservations</div>
+      </Link>
       <Link to="/admin/product">
         <div>Product</div>
       </Link>

@@ -1,16 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: Josefin Sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 code {
-  font-family: "Pristina", source-code-pro, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
+  font-family: Josefin Sans;
 }
 
 nav {
@@ -53,7 +50,7 @@ nav a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); */
 }
 
 .center-spinner {
@@ -61,6 +58,45 @@ nav a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.login-container {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  height: 92.5vh;
+}
+
+.login-container form {
+  width: 40%;
+  z-index: 1;
+}
+
+.login-heading {
+  width: 60%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.login-heading hr {
+  height: 3px;
+  width: 35%;
+}
+
+.login-btn {
+  width: 30%;
+  border: none;
+  background: #da9816;
+  padding: 20px;
+  color: white;
+  font-weight: 500;
+  margin: 10px 0;
+  border-radius: 15px;
+  font-size: 15px;
 }
 
 .profile-image {
@@ -619,6 +655,66 @@ nav a:hover {
   color: #c6811c;
 }
 
+.reservation-container {
+  padding: 60px 200px;
+}
+
+.reservation-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.reservation-heading > hr {
+  width: 35%;
+  height: 2px;
+  background-color: #000;
+}
+
+.reservation-heading > h3 {
+  font-family: Josefin Sans;
+  font-weight: 600;
+}
+
+.reservation-description {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.reservation-description small {
+  text-align: center;
+  opacity: 0.8;
+  font-size: 12px;
+}
+
+.reservation-form {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reservation-form > div {
+  width: 32%;
+}
+.reservation-form input {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.peoples-svg {
+  position: absolute;
+  left: 85%;
+  top: 50%;
+}
+
 @media (max-width: 580px) {
   .change-search {
     align-items: start !important;
@@ -627,6 +723,12 @@ nav a:hover {
   .change-search form {
     margin: 2px;
     width: 100%;
+  }
+  .login-heading {
+    z-index: 1;
+  }
+  .login-container form {
+    width: 80%;
   }
   .home-casual-elegance p {
     font-size: 40px;

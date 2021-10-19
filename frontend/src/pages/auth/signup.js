@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import { auth } from "../../firebase/firebase";
 import history from "../../history";
+import balckBg1 from "../../images/block-bg-1.png";
+import balckBg2 from "../../images/block-bg-2.png";
 
 function Signup(props) {
   const { user } = props;
@@ -41,13 +43,23 @@ function Signup(props) {
   };
 
   return (
-    <div className="container">
-      <form
-        className="border p-5 auth-form"
-        style={{ width: "80%" }}
-        onSubmit={handleSubmit}
-      >
-        <h4 className="text-center mb-3">REGISTER</h4>
+    <div className="login-container">
+      <img
+        src={balckBg1}
+        alt="NF"
+        style={{ position: "absolute", top: "0", right: "0" }}
+      />
+      <img
+        src={balckBg2}
+        alt="NF"
+        style={{ position: "absolute", bottom: "0%", left: "0" }}
+      />
+      <div className="login-heading">
+        <hr />
+        <h3>REGISTER</h3>
+        <hr />
+      </div>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Email Address : </label>
           <input
@@ -59,12 +71,17 @@ function Signup(props) {
             placeholder="Enter a valid email address"
           />
         </div>
-        <button
-          className="btn btn-raised text-white btn-block"
-          style={{ background: "#f16121" }}
+        <div
+          style={{ width: "100%" }}
+          className="d-flex flex-column align-items-center"
         >
-          REGISTER
-        </button>
+          <button
+            className="login-btn btn btn-raised"
+            style={{ background: "#f16121" }}
+          >
+            REGISTER
+          </button>
+        </div>
       </form>
     </div>
   );

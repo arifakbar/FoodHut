@@ -39,6 +39,7 @@ function Coupons(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(expiry);
       const res = await addCoupon(user.token, name, discount, expiry);
       toast.success(`${res.data.data.name} coupon created successfully.`);
       setLoading(false);
@@ -99,12 +100,11 @@ function Coupons(props) {
               <label className="form-label">Coupon Name</label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control text-uppercase"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                min={6}
-                max={15}
-                touppercase={true}
+                minLength={6}
+                maxLength={15}
                 required
               />
             </div>

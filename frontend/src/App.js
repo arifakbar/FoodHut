@@ -34,6 +34,8 @@ import About from "./pages/about";
 import Menu from "./pages/menu";
 import Reservation from "./pages/reservation";
 import Contact from "./pages/contact";
+import AdminReservations from "./pages/admin/adminReservations";
+import UserReservations from "./pages/user/userReservations";
 // import { Footer } from "antd/lib/layout/layout";
 
 import { auth } from "./firebase/firebase";
@@ -75,11 +77,21 @@ function App(props) {
         <UserRoute path="/user/profile" exact component={UserProfile} />
         <UserRoute path="/user/changeName" exact component={ChangeName} />
         <UserRoute
+          path="/user/reservations"
+          exact
+          component={UserReservations}
+        />
+        <UserRoute
           path="/user/changeNumber"
           exact
           component={ChangePhoneNumber}
         />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
+        <AdminRoute
+          path="/admin/reservations"
+          exact
+          component={AdminReservations}
+        />
         <AdminRoute path="/admin/product" exact component={Product} />
         <AdminRoute path="/admin/products" exact component={Products} />
         <AdminRoute path="/admin/category" exact component={Category} />

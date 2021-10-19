@@ -8,6 +8,8 @@ import history from "../../history";
 import { loggedInUser } from "../../actions/index";
 import { auth, googleAuthProvider } from "../../firebase/firebase";
 import { createOrUpdateUser } from "../../functions/auth";
+import balckBg1 from "../../images/block-bg-1.png";
+import balckBg2 from "../../images/block-bg-2.png";
 
 function Login(props) {
   const [loading, setLoading] = useState(false);
@@ -73,58 +75,81 @@ function Login(props) {
   };
 
   return (
-    <div className="container">
+    <div className="login-container">
+      <img
+        src={balckBg1}
+        alt="NF"
+        style={{ position: "absolute", top: "0", right: "0" }}
+      />
+      <img
+        src={balckBg2}
+        alt="NF"
+        style={{ position: "absolute", bottom: "0%", left: "0" }}
+      />
       {loading ? (
         <div className="center-spinner">
           <Spin size="large" />
         </div>
       ) : (
-        <form className="border p-5 auth-form" style={{ width: "80%" }}>
-          <h4 className="text-center mb-3">LOGIN</h4>
-          <div className="mb-3">
-            <label className="form-label">Email Address : </label>
-            <input
-              type="email"
-              className="form-control"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+        <>
+          <div className="login-heading">
+            <hr />
+            <h3>LOGIN</h3>
+            <hr />
           </div>
-          <br />
-          <div className="mb-3">
-            <label className="form-label">Password : </label>
-            <input
-              type="password"
-              className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="mb-3" style={{ fontSize: "12px" }}>
-            Forgot Password ?<Link to="/forget/password"> Click here.</Link>
-          </div>
-          <button
-            onClick={handleSubmit}
-            className="btn btn-raised btn-block text-white mb-3"
-            style={{ background: "#f16121" }}
-          >
-            Login With Email And Password
-          </button>
-          <button
-            onClick={handleGoogleLogin}
-            className="btn btn-raised btn-block text-white mb-3"
-            style={{ background: "#4285F4" }}
-          >
-            Login With Google
-          </button>
-          <button
-            onClick={handleFacebookLogin}
-            className="btn btn-raised btn-block text-white"
-            style={{ background: "black" }}
-          >
-            Login With Facebook
-          </button>
-        </form>
+          <form>
+            <div className="mb-3">
+              <label className="form-label">Email Address : </label>
+              <input
+                type="email"
+                className="form-control"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Password : </label>
+              <input
+                type="password"
+                className="form-control"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="mb-2" style={{ fontSize: "12px" }}>
+              <Link to="/forget/password" style={{ color: "red" }}>
+                Forgot Password ?
+              </Link>
+            </div>
+            <div
+              style={{ width: "100%" }}
+              className="d-flex flex-column align-items-center"
+            >
+              <button
+                onClick={handleSubmit}
+                className="login-btn btn btn-raised"
+              >
+                LOGIN
+              </button>
+              <p>OR</p>
+            </div>
+
+            <button
+              onClick={handleGoogleLogin}
+              className="btn btn-raised btn-block text-white mb-3 py-3"
+              style={{ background: "#E34133" }}
+            >
+              GOOGLE LOGIN
+            </button>
+            <button
+              onClick={handleFacebookLogin}
+              className="btn btn-raised btn-block text-white py-3"
+              style={{ background: "#4064AC" }}
+            >
+              FACEBOOK LOGIN
+            </button>
+          </form>
+        </>
       )}
     </div>
   );
