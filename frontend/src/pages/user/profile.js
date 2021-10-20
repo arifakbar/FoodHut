@@ -1,49 +1,89 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import UserSideNav from "../../components/userSideNav";
+import balckBg1 from "../../images/block-bg-1.png";
+import balckBg2 from "../../images/block-bg-2.png";
 
 function UserProfile(props) {
   const { user } = props;
-  const [image, setImage] = useState("");
   return (
     <>
       <UserSideNav />
-      <div className="container py-4">
-        <h4 className="text-center">Profile</h4>
-        <div
-          className="d-flex flex-column align-items-center my-5"
-          style={{ gap: "15px" }}
-        >
-          <div
-            className="profile-image bg-dark d-flex flex-column align-items-center"
-            style={{
-              width: "250px",
-              height: "250px",
-              overflow: "hidden",
-              borderRadius: "50%",
-            }}
-          >
-            <img
-              src="https://mdbootstrap.com/img/new/avatars/2.jpg"
-              alt="NF"
-              style={{ objectFit: "cover", height: "100%", width: "100%" }}
-            />
+      <div className="login-container">
+        <img
+          src={balckBg1}
+          alt="NF"
+          style={{ position: "absolute", top: "0", right: "0" }}
+        />
+        <img
+          src={balckBg2}
+          alt="NF"
+          style={{ position: "absolute", bottom: "0%", left: "0" }}
+        />
+        <div className="login-heading">
+          <hr />
+          <h4 className="text-center m-0">ACCOUNT</h4>
+          <hr />
+        </div>
+        <div className="account-container">
+          <div className="my-3">
+            Email Address:
+            <br />
+            <input type="text" disabled value={user.email} />
           </div>
-          <p>
-            <b>Email Address: </b>
-            {user.email}
-          </p>
-          <p>
-            <b>Username : </b>
-            {user.name} &nbsp;
-            <Link to="/user/changeName">Change Username</Link>
-          </p>
-          <p>
-            <b>Phone Number :</b> {user.phoneNumber} &nbsp;
-            <Link to="/user/changeNumber">Change Number</Link>
-          </p>
+          <div className="my-3">
+            Username :
+            <br />
+            <div className="d-flex gap-4">
+              <input type="text" disabled value={user.name} />
+
+              <Link to="/user/changeName" className="account-container-button">
+                <button className="btn btn-raised text-center">
+                  Change Username
+                </button>
+              </Link>
+            </div>
+          </div>
+          <div className="my-3">
+            Phone Number :
+            <br />
+            <div className="d-flex gap-4">
+              <input
+                type="text"
+                disabled
+                value={
+                  user.phoneNumber === 0
+                    ? "Not Entered Phone Number Yet!"
+                    : user.phoneNumber
+                }
+              />
+              <Link
+                to="/user/changeNumber"
+                className="account-container-button"
+              >
+                <button className="btn btn-raised">Change Number</button>
+              </Link>
+            </div>
+          </div>
+          <div className="my-3">
+            Address :
+            <br />
+            <div className="d-flex gap-4">
+              <textarea disabled>
+                {user.address.length === 0
+                  ? "Not Entered Address Yet!"
+                  : user.address}
+              </textarea>
+              <Link
+                to="/user/address"
+                className="account-container-button account-address-btn"
+              >
+                <button className="btn btn-raised ">Change Address</button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </>

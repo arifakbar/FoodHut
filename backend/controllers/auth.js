@@ -66,6 +66,25 @@ exports.updateUsername = async (req, res, next) => {
   }
 };
 
+exports.updateAddress = async (req, res, next) => {
+  try {
+    const { address } = req.body;
+    const user = await User.findOneAndUpdate(
+      { email: req.user.email },
+      { address: address }
+    );
+    res.status(201).json({
+      data: user,
+      message: "Address updated successfully!",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      err: "Some error occured!",
+    });
+  }
+};
+
 exports.sendOTP = async (req, res, next) => {
   const { number } = req.body;
   try {

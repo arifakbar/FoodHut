@@ -62,18 +62,6 @@ function Login(props) {
     }
   };
 
-  const handleFacebookLogin = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-      toast.error(err.message);
-    }
-  };
-
   return (
     <div className="login-container">
       <img
@@ -94,7 +82,7 @@ function Login(props) {
         <>
           <div className="login-heading">
             <hr />
-            <h3>LOGIN</h3>
+            <h3 className="m-0">LOGIN</h3>
             <hr />
           </div>
           <form>
@@ -133,21 +121,20 @@ function Login(props) {
               </button>
               <p>OR</p>
             </div>
-
-            <button
-              onClick={handleGoogleLogin}
-              className="btn btn-raised btn-block text-white mb-3 py-3"
-              style={{ background: "#E34133" }}
+            <div
+              style={{
+                width: "100%",
+                textAlign: "center",
+              }}
             >
-              GOOGLE LOGIN
-            </button>
-            <button
-              onClick={handleFacebookLogin}
-              className="btn btn-raised btn-block text-white py-3"
-              style={{ background: "#4064AC" }}
-            >
-              FACEBOOK LOGIN
-            </button>
+              <button
+                onClick={handleGoogleLogin}
+                className="btn btn-raised mb-3 py-3 "
+                style={{ width: "60%" }}
+              >
+                <i class="fab fa-google fa-x"></i>&nbsp;&nbsp;GOOGLE LOGIN
+              </button>
+            </div>
           </form>
         </>
       )}

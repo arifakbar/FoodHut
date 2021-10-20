@@ -41,6 +41,7 @@ import UserReservations from "./pages/user/userReservations";
 import { auth } from "./firebase/firebase";
 import { currentUserInfo } from "./actions/index";
 import { currentUser } from "./functions/auth";
+import ChangeAddress from "./pages/user/changeAddress";
 
 function App(props) {
   useEffect(() => {
@@ -76,6 +77,7 @@ function App(props) {
         <UserRoute path="/user/orders" exact component={Order} />
         <UserRoute path="/user/profile" exact component={UserProfile} />
         <UserRoute path="/user/changeName" exact component={ChangeName} />
+        <UserRoute path="/user/address" exact component={ChangeAddress} />
         <UserRoute
           path="/user/reservations"
           exact

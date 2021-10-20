@@ -11,6 +11,7 @@ export const loggedInUser = (idTokenResult, res) => {
       email: res.data.data.email,
       role: res.data.data.role,
       phoneNumber: res.data.data.phoneNumber,
+      address: res.data.data.address,
       _id: res.data.data._id,
     },
   };
@@ -25,6 +26,7 @@ export const currentUserInfo = (idTokenResult, res) => {
       email: res.data.data.email,
       role: res.data.data.role,
       phoneNumber: res.data.data.phoneNumber,
+      address: res.data.data.address,
       _id: res.data.data._id,
     },
   };

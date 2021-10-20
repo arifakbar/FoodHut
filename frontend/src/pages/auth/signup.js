@@ -56,7 +56,7 @@ function Signup(props) {
       />
       <div className="login-heading">
         <hr />
-        <h3>REGISTER</h3>
+        <h3 className="m-0">REGISTER</h3>
         <hr />
       </div>
       <form onSubmit={handleSubmit}>

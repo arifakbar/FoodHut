@@ -59,7 +59,7 @@ function Reservation(props) {
       />
       <div className="reservation-heading">
         <hr />
-        <h3>RESERVATION</h3>
+        <h3 className="m-0">RESERVATION</h3>
         <hr />
       </div>
       <div className="reservation-description">

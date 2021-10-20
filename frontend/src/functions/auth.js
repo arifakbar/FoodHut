@@ -49,6 +49,20 @@ export const updateUsername = async (username, authToken) => {
   );
 };
 
+export const updateAddress = async (address, authToken) => {
+  return await axios.post(
+    process.env.REACT_APP_API + "/update-address",
+    {
+      address: address,
+    },
+    {
+      headers: {
+        authToken: authToken,
+      },
+    }
+  );
+};
+
 export const sendOTP = async (authToken, number) => {
   return await axios.post(
     process.env.REACT_APP_API + "/user/sendOTP",

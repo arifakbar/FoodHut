@@ -19,7 +19,7 @@ const userSchema = new Schema(
       type: Array,
       default: [],
     },
-    address: String,
+    address: { type: String, default: "" },
     phoneNumber: { type: Number, default: 0 },
     /*
         wishlist : [{

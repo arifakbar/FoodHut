@@ -2,23 +2,23 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 
-import { updateUsername, currentUser } from "../../functions/auth";
+import { updateAddress, currentUser } from "../../functions/auth";
 import { currentUserInfo } from "../../actions/index";
 import history from "../../history";
 import balckBg1 from "../../images/block-bg-1.png";
 import balckBg2 from "../../images/block-bg-2.png";
 
-function ChangeName(props) {
+function ChangeAddress(props) {
   const { user } = props;
-  const [username, setUsername] = useState(user.name);
+  const [address, setAddress] = useState(user.address);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateUsername(username, user.token);
+      await updateAddress(address, user.token);
       const res = await currentUser(user.token);
       props.currentUserInfo(user, res);
-      toast.success("Username changed successfully.");
+      toast.success("Address changed successfully.");
       history.push("/user/profile");
     } catch (err) {
       console.log(err);
@@ -40,17 +40,17 @@ function ChangeName(props) {
       />
       <div className="login-heading">
         <hr />
-        <h4 className="text-center m-0">USERNAME</h4>
+        <h4 className="text-center m-0">ADDRESS</h4>
         <hr />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Username : </label>
+          <label className="form-label">Address : </label>
           <input
             type="text"
             className="form-control"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
             required
           />
         </div>
@@ -70,5 +70,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { currentUserInfo: currentUserInfo })(
-  ChangeName
+  ChangeAddress
 );

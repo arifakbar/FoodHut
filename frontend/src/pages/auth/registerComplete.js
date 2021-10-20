@@ -67,7 +67,7 @@ function RegisterComplete(props) {
       />
       <div className="login-heading">
         <hr style={{ width: "25%" }} />
-        <h3>COMPLETE REGISTRATION</h3>
+        <h3 className="m-0">COMPLETE REGISTRATION</h3>
         <hr style={{ width: "25%" }} />
       </div>
       {loading ? (
