@@ -88,13 +88,53 @@ export const verifyOTP = async (authToken, number, OTP) => {
   );
 };
 
+export const userCart = async (cart, authToken) => {
+  return await axios.post(
+    process.env.REACT_APP_API + "/user/cart",
+    {
+      cart: cart,
+    },
+    {
+      headers: {
+        authToken: authToken,
+      },
+    }
+  );
+};
+
+export const getUserCart = async (authToken) => {
+  return await axios.get(process.env.REACT_APP_API + "/user/cart", {
+    headers: {
+      authToken: authToken,
+    },
+  });
+};
+
+export const deleteUserCart = async (authToken) => {
+  return await axios.delete(process.env.REACT_APP_API + "/user/cart", {
+    headers: {
+      authToken: authToken,
+    },
+  });
+};
+
+export const applyDiscountCoupon = async (authToken, coupon) => {
+  return await axios.post(
+    process.env.REACT_APP_API + "/user/cart/coupon",
+    {
+      coupon: coupon,
+    },
+    { headers: { authToken: authToken } }
+  );
+};
+
 export const roleBasedRedirect = (res) => {
   if (history.location.state) history.push(history.location.state.from);
   else {
     if (res.data.data.role === "admin") {
       history.push("/admin/dashboard");
     } else {
-      history.push("/user/history");
+      history.push("/");
     }
   }
 };

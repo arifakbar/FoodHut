@@ -7,7 +7,7 @@ import { Spin } from "antd";
 import history from "../../history";
 import { loggedInUser } from "../../actions/index";
 import { auth, googleAuthProvider } from "../../firebase/firebase";
-import { createOrUpdateUser } from "../../functions/auth";
+import { createOrUpdateUser, roleBasedRedirect } from "../../functions/auth";
 import balckBg1 from "../../images/block-bg-1.png";
 import balckBg2 from "../../images/block-bg-2.png";
 
@@ -18,6 +18,7 @@ function Login(props) {
     user = props.user;
   }
   useEffect(() => {
+    if (history.location.state) return;
     if (user && user.token) {
       history.push("/");
     }
@@ -37,6 +38,7 @@ function Login(props) {
       await props.loggedInUser(idTokenResult, res);
       setLoading(false);
       toast.success("Logged in successfully.");
+      roleBasedRedirect(res);
     } catch (err) {
       setLoading(false);
       console.log(err);
@@ -55,6 +57,7 @@ function Login(props) {
       await props.loggedInUser(idTokenResult, res);
       setLoading(false);
       toast.success("Logged in successfully.");
+      roleBasedRedirect(res);
     } catch (err) {
       console.log(err);
       toast.error(err.message);

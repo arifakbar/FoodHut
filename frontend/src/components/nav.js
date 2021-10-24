@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 
 import history from "../history";
 import { logoutUser } from "../actions/index";
+import logo from "../images/Logo.png";
 
 function Nav(props) {
-  const { user } = props;
+  const { user, cart } = props;
 
   const handleLogout = async () => {
     try {
@@ -23,12 +24,8 @@ function Nav(props) {
         className="container-fluid"
         style={{ background: "transparent", zIndex: 2 }}
       >
-        <Link
-          to="/"
-          className=".navbar-brand text-black m-0 h5"
-          style={{ fontFamily: "Vivaldi", fontWeight: "800" }}
-        >
-          FH
+        <Link to="/" className=".navbar-brand">
+          <img src={logo} alt="FH" style={{ height: "50px", width: "50px" }} />
         </Link>
         <button
           className="navbar-toggler"
@@ -56,6 +53,9 @@ function Nav(props) {
             <Link className="nav-link" to="/reservation">
               Reservation
             </Link>
+            <Link className="nav-link" to="/search">
+              Search
+            </Link>
             <Link className="nav-link" to="/about">
               About
             </Link>
@@ -73,11 +73,11 @@ function Nav(props) {
                   badge
                   rounded-pill
                   badge-notification
-                  bg-white
-                  text-danger
+                  bg-danger
+                  text-white
                 "
               >
-                0
+                {cart && cart.length}
               </span>
             </Link>
             {user && user.token ? (
@@ -145,7 +145,7 @@ function Nav(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user };
+  return { user: state.user, cart: state.cart };
 };
 
 export default connect(mapStateToProps, { logoutUser: logoutUser })(Nav);

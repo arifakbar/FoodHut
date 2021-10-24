@@ -20,10 +20,23 @@ router.post(
 );
 
 router.post("/update-username", [authCheck], authController.updateUsername);
+
 router.post("/update-address", [authCheck], authController.updateAddress);
 
 router.post("/user/sendOTP", [authCheck], authController.sendOTP);
 
 router.post("/user/verifyOTP", [authCheck], authController.verifyOTP);
+
+router.post("/user/cart", [authCheck], authController.userCart);
+
+router.get("/user/cart", [authCheck], authController.getUserCart);
+
+router.delete("/user/cart", [authCheck], authController.deleteUserCart);
+
+router.post(
+  "/user/cart/coupon",
+  [authCheck],
+  authController.applyDiscountCoupon
+);
 
 module.exports = router;

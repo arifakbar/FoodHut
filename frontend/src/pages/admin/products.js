@@ -4,26 +4,46 @@ import { Spin } from "antd";
 import { connect } from "react-redux";
 import { Card } from "antd";
 import axios from "axios";
+import { Pagination } from "antd";
 
 import AdminSideNav from "../../components/adminSideNav";
 import { Link } from "react-router-dom";
-import { getAllProducts, deleteProduct } from "../../functions/product";
+import {
+  getAllProducts,
+  deleteProduct,
+  productsCount,
+} from "../../functions/product";
 
 const { Meta } = Card;
 
 function Products(props) {
   const { user } = props;
+  const [page, setPage] = useState(0);
+  const [count, setCount] = useState(0);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    totalProducts();
     loadProducts();
-  }, []);
+  }, [page]);
+
+  const totalProducts = async () => {
+    try {
+      setLoading(true);
+      const res = await productsCount();
+      setCount(res.data.data);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      toast.error(err.message);
+    }
+  };
 
   const loadProducts = async () => {
     try {
       setLoading(true);
-      const res = await getAllProducts(10);
+      const res = await getAllProducts("createdAt", "desc", page);
       setProducts(res.data.data);
       setLoading(false);
     } catch (err) {
@@ -34,7 +54,6 @@ function Products(props) {
   };
 
   const handleDelete = async (p) => {
-    // p.images[0].public_id
     if (window.confirm(`Do you really want to delete ${p.title} product ?`)) {
       setLoading(true);
       try {
@@ -116,6 +135,12 @@ function Products(props) {
                 );
               })}
           </div>
+          <br />
+          <Pagination
+            current={page}
+            total={(count / 4) * 10}
+            onChange={(value) => setPage(value)}
+          />
         </div>
       )}
     </div>

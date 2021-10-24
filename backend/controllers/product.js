@@ -1,13 +1,30 @@
 const Product = require("../models/product");
 const slugify = require("slugify");
 
+exports.productsCount = async (req, res, next) => {
+  try {
+    const total = await Product.find().estimatedDocumentCount();
+    res.status(200).json({
+      data: total,
+      message: "Total Products count fetched successfully.",
+    });
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ err: "Some error occured" });
+  }
+};
+
 exports.getAllProducts = async (req, res, next) => {
   try {
+    const { sort, order, page } = req.body;
+    const currentPage = page || 1;
+    const perPage = 4;
     const products = await Product.find()
-      .limit(parseInt(req.params.count))
+      .skip((currentPage - 1) * perPage)
       .populate("category")
       .populate("subCategory")
-      .sort({ createdAt: -1 });
+      .sort([[sort, order]])
+      .limit(perPage);
     res
       .status(200)
       .json({ data: products, message: "Products fetched successfully." });
@@ -74,6 +91,42 @@ exports.deleteProduct = async (req, res, next) => {
     res
       .status(201)
       .json({ ok: true, message: "Product deleted successfully." });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.getProductsByCount = async (req, res, next) => {
+  try {
+    const { count } = req.params;
+    console.log("C:" + count);
+    const products = await Product.find()
+      .populate("category")
+      .populate("subCategory")
+      .sort({ createdAt: -1 })
+      .limit(+count);
+    res
+      .status(200)
+      .json({ data: products, message: "Products fetched successfully" });
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.searchProduct = async (req, res, next) => {
+  try {
+    const { query } = req.body;
+    const products = await Product.find({
+      $or: [
+        { title: new RegExp(query, "i") },
+        { description: new RegExp(query, "i") },
+      ],
+    }).sort({ createdAt: -1 });
+    res
+      .status(200)
+      .json({ data: products, message: "Products found successfully" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ err: "Some error occured" });

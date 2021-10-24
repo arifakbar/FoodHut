@@ -36,12 +36,16 @@ import Reservation from "./pages/reservation";
 import Contact from "./pages/contact";
 import AdminReservations from "./pages/admin/adminReservations";
 import UserReservations from "./pages/user/userReservations";
+import SearchFilter from "./pages/SearchFilter";
+import Cart from "./pages/user/cart";
 // import { Footer } from "antd/lib/layout/layout";
 
 import { auth } from "./firebase/firebase";
 import { currentUserInfo } from "./actions/index";
 import { currentUser } from "./functions/auth";
 import ChangeAddress from "./pages/user/changeAddress";
+import Checkout from "./pages/user/checkout";
+import Payment from "./pages/user/payment";
 
 function App(props) {
   useEffect(() => {
@@ -71,6 +75,8 @@ function App(props) {
         <Route path="/menu" exact component={Menu} />
         <Route path="/contact" exact component={Contact} />
         <Route path="/reservation" exact component={Reservation} />
+        <Route path="/search" exact component={SearchFilter} />
+        <Route path="/cart" exact component={Cart} />
         <UserRoute path="/user/history" exact component={History} />
         <UserRoute path="/user/resetPassword" exact component={ResetPassword} />
         <UserRoute path="/user/wishlist" exact component={Wishlist} />
@@ -78,11 +84,13 @@ function App(props) {
         <UserRoute path="/user/profile" exact component={UserProfile} />
         <UserRoute path="/user/changeName" exact component={ChangeName} />
         <UserRoute path="/user/address" exact component={ChangeAddress} />
+        <UserRoute path="/checkout" exact component={Checkout} />
         <UserRoute
           path="/user/reservations"
           exact
           component={UserReservations}
         />
+        <UserRoute path="/payment" exact component={Payment} />
         <UserRoute
           path="/user/changeNumber"
           exact

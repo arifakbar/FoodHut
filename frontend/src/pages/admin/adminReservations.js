@@ -91,8 +91,8 @@ function AdminReservations(props) {
                       <p>Name: {r.name}</p>
                       <p>Seats: {r.seats}</p>
                       <p>
-                        {/* Time: {new Date(r.reservationDateTime).toLocaleString()} */}
-                        {r.reservationDateTime}
+                        Time: {new Date(r.reservationDateTime).toLocaleString()}
+                        {/* {r.reservationDateTime} */}
                       </p>
                       <label>Status: </label>
                       <select

@@ -1,4 +1,10 @@
-import { CURRENT_USER_INFO, LOGOUT, LOGGED_IN_USER } from "./types";
+import {
+  CURRENT_USER_INFO,
+  LOGOUT,
+  LOGGED_IN_USER,
+  ADD_TO_CART,
+  COUPON_APPLIED,
+} from "./types";
 
 import firebase from "firebase/compat/app";
 
@@ -37,5 +43,19 @@ export const logoutUser = () => {
   return {
     type: LOGOUT,
     payload: null,
+  };
+};
+
+export const addToCartAction = (unique) => {
+  return {
+    type: ADD_TO_CART,
+    payload: unique,
+  };
+};
+
+export const appliedCoupon = (status) => {
+  return {
+    type: COUPON_APPLIED,
+    payload: status,
   };
 };

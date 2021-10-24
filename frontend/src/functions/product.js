@@ -6,8 +6,20 @@ export const createProduct = async (authToken, product) => {
   });
 };
 
-export const getAllProducts = async (count) => {
+export const getProductsByCount = async (count) => {
   return await axios.get(process.env.REACT_APP_API + "/products/" + count);
+};
+
+export const productsCount = async () => {
+  return await axios.get(process.env.REACT_APP_API + "/products/total");
+};
+
+export const getAllProducts = async (sort, order, page) => {
+  return await axios.post(process.env.REACT_APP_API + "/products", {
+    sort,
+    order,
+    page,
+  });
 };
 
 export const getProduct = async (productId) => {
@@ -27,4 +39,10 @@ export const deleteProduct = async (authToken, productId) => {
     process.env.REACT_APP_API + "/product/" + productId,
     { headers: { authToken: authToken } }
   );
+};
+
+export const searchProduct = async (query) => {
+  return await axios.post(process.env.REACT_APP_API + "/products/search", {
+    query: query,
+  });
 };

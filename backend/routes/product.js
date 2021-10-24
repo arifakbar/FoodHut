@@ -4,9 +4,13 @@ const router = express.Router();
 const { authCheck, adminCheck } = require("../middlewares/auth");
 const productController = require("../controllers/product");
 
-router.get("/products/:count", productController.getAllProducts);
+router.post("/products", productController.getAllProducts);
 
 router.get("/product/:productId", productController.getProduct);
+
+router.get("/products/total", productController.productsCount);
+
+router.get("/products/:count", productController.getProductsByCount);
 
 router.post(
   "/product",
@@ -25,5 +29,7 @@ router.delete(
   [authCheck, adminCheck],
   productController.deleteProduct
 );
+
+router.post("/products/search", productController.searchProduct);
 
 module.exports = router;
