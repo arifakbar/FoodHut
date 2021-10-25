@@ -38,7 +38,6 @@ import AdminReservations from "./pages/admin/adminReservations";
 import UserReservations from "./pages/user/userReservations";
 import SearchFilter from "./pages/SearchFilter";
 import Cart from "./pages/user/cart";
-// import { Footer } from "antd/lib/layout/layout";
 
 import { auth } from "./firebase/firebase";
 import { currentUserInfo } from "./actions/index";
@@ -128,7 +127,6 @@ function App(props) {
           component={EditProduct}
         />
       </Switch>
-      {/* <Footer /> */}
     </>
   );
 }

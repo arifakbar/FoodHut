@@ -187,6 +187,17 @@ nav a:hover {
   width: 100%;
 }
 
+.about-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("./images/Group\ 97.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100vh;
+  width: 100%;
+}
+
 .home-about {
   height: 90vh;
   background: #ececec;
@@ -328,6 +339,84 @@ nav a:hover {
 }
 
 .home-cuisine-content button:hover {
+  background-color: #da9816;
+  color: #ececec;
+}
+
+.home-coupons {
+  margin: 50px 0;
+  display: flex;
+  width: 100%;
+  height: 80vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-coupons h3 {
+  padding-right: 45px;
+  font-size: 75px;
+  margin: -35px;
+  color: #da9816;
+  font-weight: 600;
+  word-spacing: 5px;
+  font-family: Invitation Script LIMITED FREE VERSION, Regular;
+  transform: rotateZ(-10deg);
+}
+
+.coupon-container {
+  width: 90%;
+  height: 80%;
+  display: flex;
+  background: #ececec;
+}
+
+.coupon-img {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.coupon-img img {
+  height: 70%;
+  width: 80%;
+}
+
+.coupon-content {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.coupon-content h4 {
+  color: #da9816;
+  font-family: Sail;
+  font-size: 45px;
+}
+
+.coupon-content p {
+  width: 65%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.coupon-content button {
+  background: inherit;
+  border: 2px solid #da9816;
+  color: #da9816;
+  padding: 10px 20px;
+  transition: 0.3s ease-in-out all;
+  margin: 10px 0;
+}
+
+.coupon-content button:hover {
   background-color: #da9816;
   color: #ececec;
 }
@@ -952,6 +1041,276 @@ nav a:hover {
   width: 50%;
   border-left: 2px solid #ececec;
   padding-left: 15px;
+}
+
+.about-history {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  width: 90%;
+  margin: 20vh 0;
+  background-color: #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.history-heading {
+  position: absolute;
+  top: -16%;
+  left: 10%;
+}
+
+.history-heading h2 {
+  font-family: Sail;
+  font-weight: 700;
+  font-size: 65px;
+  letter-spacing: 1.5px;
+  color: #ececec;
+}
+
+.history-heading h4 {
+  padding-left: 200px;
+  font-size: 65px;
+  margin: -55px;
+  font-weight: 500;
+  font-family: Invitation Script LIMITED FREE VERSION, Regular;
+  transform: rotateZ(-10deg);
+  color: #daa455;
+  letter-spacing: 1.5px;
+}
+
+.history-content {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.history-content h6 {
+  font-weight: 700;
+}
+
+.history-content p {
+  width: 80%;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.history-img {
+  width: 45%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.history-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  transition: 0.5s ease-in-out all;
+}
+
+.history-img img:hover {
+  transform: scale(1.2);
+}
+
+.about-team {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.about-team h1 {
+  font-family: Sail;
+  font-size: 65px;
+  color: #daa455;
+}
+
+.about-team h4 {
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.team-img {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  cursor: pointer;
+  perspective: 600;
+}
+
+.team-member {
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+  width: 25%;
+}
+
+.team-member:hover {
+  transform: rotateY(180deg);
+}
+
+.member-pic {
+  backface-visibility: hidden;
+  border-radius: 6px;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+
+.member-pic img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.member-info {
+  background: #eaeaed;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  line-height: 35px;
+  height: 100%;
+  text-align: center;
+  transform: rotateY(180deg);
+}
+
+footer {
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ececec;
+}
+
+.footer-content {
+  height: 80%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #243450;
+  color: white;
+  padding: 0 35px;
+}
+
+.footer-timings {
+  border-right: 2px dashed #da9816;
+  width: 15%;
+}
+
+.footer-timings > div {
+  margin: 15px 0;
+}
+
+.footer-timings p {
+  margin: 0;
+}
+
+.footer-contact {
+  width: 15%;
+}
+
+.footer-contact p {
+  margin: 0;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+}
+
+.footer-info p {
+  margin: 0;
+}
+
+.footer-info a {
+  color: white;
+}
+
+.footer-links {
+  width: 15%;
+}
+
+.footer-links > div {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-links small {
+  margin-top: 5px;
+}
+
+.footer-links a {
+  border: 1px solid #da9816;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #da9816;
+  margin-bottom: 5px;
+  transition: 0.5s ease-in-out all;
+}
+
+.footer-links a:hover {
+  background-color: #da9816;
+  color: #243450;
+}
+
+.footer-newsletter {
+  width: 20%;
+}
+
+.footer-newsletter button {
+  background-color: inherit;
+  border: 1px solid #da9816;
+  color: #da9816;
+  padding: 7px 21px;
+  font-weight: 500;
+  transition: 0.5s ease-in-out all;
+}
+
+.footer-newsletter button:hover {
+  background-color: #da9816;
+  color: #243450;
+}
+
+footer small,
+footer a {
+  opacity: 0.8;
+}
+
+.carousel-caption {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 30px;
+  justify-content: center !important;
+}
+
+.carousel-caption p {
+  font-size: 25px;
+}
+
+.carousel-caption i {
+  font-size: 45px;
 }
 
 @media (max-width: 580px) {
