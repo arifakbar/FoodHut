@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { Spin } from "antd";
+import { Pagination } from "antd";
 
 import AdminSideNav from "../../components/adminSideNav";
 import {

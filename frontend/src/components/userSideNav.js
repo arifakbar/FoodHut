@@ -37,9 +37,6 @@ function UserSideNav() {
       <Link to="/user/wishlist">
         <div>Wishlist</div>
       </Link>
-      <Link to="/user/orders">
-        <div>Orders</div>
-      </Link>
     </div>
   );
 }

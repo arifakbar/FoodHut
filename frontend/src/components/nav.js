@@ -59,6 +59,9 @@ function Nav(props) {
             <Link className="nav-link" to="/about">
               About
             </Link>
+            <Link className="nav-link" to="/press">
+              Press
+            </Link>
             <Link className="nav-link" to="/contact">
               Contact
             </Link>

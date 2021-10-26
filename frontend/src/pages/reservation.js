@@ -48,11 +48,14 @@ function Reservation(props) {
 
   return (
     <>
+      <div style={{ height: "97vh" }}>
+        <div className="reservation-banner"></div>
+      </div>
       <div className="container-fluid position-relative reservation-container">
         <img
           src={balckBg1}
           alt="NF"
-          style={{ position: "absolute", top: "0", right: "0" }}
+          style={{ position: "absolute", top: "-6.5%", right: "0" }}
         />
         <img
           src={balckBg2}

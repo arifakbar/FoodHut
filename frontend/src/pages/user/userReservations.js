@@ -8,6 +8,8 @@ import {
   getUserReservations,
   deleteReservation,
 } from "../../functions/reservation";
+import balckBg1 from "../../images/block-bg-1.png";
+import balckBg2 from "../../images/block-bg-2.png";
 
 function UserReservations(props) {
   const [loading, setLoading] = useState(false);
@@ -59,27 +61,45 @@ function UserReservations(props) {
         </div>
       ) : (
         <div
-          className="d-flex flex-column align-items-center"
+          className="d-flex flex-column align-items-center login-container"
           style={{ gap: "15px" }}
         >
-          <h2 className="my-2">Reservations</h2>
-          <div className="row p-2" style={{ width: "80%" }}>
+          <img
+            src={balckBg1}
+            alt="NF"
+            style={{ position: "absolute", top: "0", right: "0" }}
+          />
+          <img
+            src={balckBg2}
+            alt="NF"
+            style={{ position: "absolute", bottom: "0%", left: "0" }}
+          />
+          <div className="login-heading">
+            <hr />
+            <h4 className="text-center m-0">Reservations</h4>
+            <hr />
+          </div>
+          <div className="row p-2" style={{ width: "75%", height: "80%" }}>
             {reservations.length > 0 &&
               reservations.map((r) => {
                 return (
                   <div className=" col-sm-3" key={r._id}>
-                    <div className="border p-2">
+                    <div
+                      className="border p-3"
+                      style={{ boxShadow: "0px 3px 6px rgba(0,0,0,0.3)" }}
+                    >
                       <p>Name: {r.name}</p>
                       <p>Seats: {r.seats}</p>
                       <p>
                         Time: {new Date(r.reservationDateTime).toLocaleString()}
                       </p>
                       <p>Status: {r.status}</p>
+                      <hr />
                       <button
                         className="btn btn-raised btn-danger mt-3"
                         onClick={(e) => handleDelete(r)}
                       >
-                        Delete
+                        Cancel
                       </button>
                     </div>
                   </div>

@@ -9,14 +9,12 @@ import Login from "./pages/auth/login";
 import Signup from "./pages/auth/signup";
 import Nav from "./components/nav";
 import RegisterComplete from "./pages/auth/registerComplete";
-// import Footer from "./pages/components/footer";
 import ForgetPassword from "./pages/auth/forgetPassword";
 import History from "./pages/user/history";
 import UserRoute from "./components/routes/userRoute";
 import AdminRoute from "./components/routes/adminRoute";
 import ResetPassword from "./pages/user/resetPassword";
 import Wishlist from "./pages/user/wishlist";
-import Order from "./pages/user/orders";
 import AdminDashboard from "./pages/admin/adminDashboard";
 import UserProfile from "./pages/user/profile";
 import ChangeName from "./pages/user/changeName";
@@ -45,6 +43,7 @@ import { currentUser } from "./functions/auth";
 import ChangeAddress from "./pages/user/changeAddress";
 import Checkout from "./pages/user/checkout";
 import Payment from "./pages/user/payment";
+import Press from "./pages/press";
 
 function App(props) {
   useEffect(() => {
@@ -73,13 +72,13 @@ function App(props) {
         <Route path="/about" exact component={About} />
         <Route path="/menu" exact component={Menu} />
         <Route path="/contact" exact component={Contact} />
+        <Route path="/press" exact component={Press} />
         <Route path="/reservation" exact component={Reservation} />
         <Route path="/search" exact component={SearchFilter} />
         <Route path="/cart" exact component={Cart} />
         <UserRoute path="/user/history" exact component={History} />
         <UserRoute path="/user/resetPassword" exact component={ResetPassword} />
         <UserRoute path="/user/wishlist" exact component={Wishlist} />
-        <UserRoute path="/user/orders" exact component={Order} />
         <UserRoute path="/user/profile" exact component={UserProfile} />
         <UserRoute path="/user/changeName" exact component={ChangeName} />
         <UserRoute path="/user/address" exact component={ChangeAddress} />

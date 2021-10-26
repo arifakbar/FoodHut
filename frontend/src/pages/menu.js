@@ -20,6 +20,9 @@ function Menu() {
   return (
     <>
       <div className="container-fluid">
+        <div style={{ height: "97vh" }}>
+          <div className="menu-banner"></div>
+        </div>
         <div className="menu">
           <div className="menu-fastfood-images">
             <div style={{ width: "100%", height: "60%", overflow: "hidden" }}>
@@ -53,7 +56,7 @@ function Menu() {
             <img
               src={balckBg1}
               alt="NF"
-              style={{ position: "absolute", top: "0", right: "0" }}
+              style={{ position: "absolute", top: "-4.8%", right: "-2%" }}
             />
             <h1>Snacks</h1>
             <p>

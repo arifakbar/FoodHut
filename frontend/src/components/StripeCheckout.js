@@ -70,9 +70,9 @@ function StripeCheckout(props) {
   };
 
   return (
-    <>
+    <div className="container d-flex flex-column align-items-center justify-content-center gap-3 py-3">
       {!success && (
-        <div>
+        <div style={{ width: "80%" }}>
           {coupon && totalAfterDiscount !== undefined ? (
             <p className="alert alert-success">{`Total after discount: $${totalAfterDiscount}`}</p>
           ) : (
@@ -81,28 +81,41 @@ function StripeCheckout(props) {
         </div>
       )}
       <Card
-        className="my-5"
-        // cover={<img src={logo} style={{ height: "200px", width: "200px" }} />}
-        actions={[
-          <button className="btn btn-raised btn-warning">
-            Total : Rs. {cartTotal}
-          </button>,
-          <button className="btn btn-raised btn-success">
-            Payable : Rs. {(payable / 100).toFixed(2)}
-          </button>,
-        ]}
+        style={{ width: "80%" }}
+        className="d-flex flex-column align-items-center"
+        cover={
+          <img
+            src={logo}
+            style={{ height: "200px", width: "200px", objectFit: "fill" }}
+          />
+        }
+        actions={[]}
       />
+      <div
+        style={{ width: "80%" }}
+        className="d-flex align-items-center justify-content-evenly"
+      >
+        <button className="btn btn-raised btn-warning">
+          Total : Rs. {cartTotal}
+        </button>
+        <button className="btn btn-raised btn-success">
+          Payable : Rs. {(payable / 100).toFixed(2)}
+        </button>
+      </div>
       {success ? (
-        <div className="text-white bg-success p-1 my-2 text-center">
+        <div
+          className="text-white bg-primary p-2 my-2 text-center"
+          style={{ width: "80%" }}
+        >
           Payment done successfully.
-          <Link to="/user/history" className="p-2">
+          <Link to="/user/history" className="p-2 text-danger">
             See purchase history.
           </Link>
         </div>
       ) : (
         ""
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ width: "80%", marginTop: "15px" }}>
         <CardElement onChange={handleChange} />
         {error && <div className="text-white bg-danger p-1 my-2">{error}</div>}
         <button
@@ -112,7 +125,7 @@ function StripeCheckout(props) {
           {processing ? "Loding" : "Pay"}
         </button>
       </form>
-    </>
+    </div>
   );
 }
 

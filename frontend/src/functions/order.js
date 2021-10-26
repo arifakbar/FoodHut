@@ -11,3 +11,39 @@ export const createOrder = async (authToken, stripeResponse) => {
     }
   );
 };
+
+export const getAllOrders = async (authToken, page) => {
+  return await axios.post(
+    process.env.REACT_APP_API + "/orders",
+    {
+      page: page,
+    },
+    {
+      headers: {
+        authToken: authToken,
+      },
+    }
+  );
+};
+
+export const getUserOrders = async (authToken) => {
+  return await axios.get(process.env.REACT_APP_API + "/user/orders", {
+    headers: { authToken: authToken },
+  });
+};
+
+export const ordersCount = async () => {
+  return await axios.get(process.env.REACT_APP_API + "/orders/total");
+};
+
+export const updateOrderStatus = async (authToken, orderId, orderStatus) => {
+  return await axios.put(
+    process.env.REACT_APP_API + "/order/" + orderId,
+    {
+      orderStatus: orderStatus,
+    },
+    {
+      headers: { authToken: authToken },
+    }
+  );
+};

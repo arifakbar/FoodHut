@@ -29,3 +29,69 @@ exports.createOrder = async (req, res, next) => {
     res.status(500).json({ err: "Some error occured" });
   }
 };
+
+exports.getAllOrders = async (req, res, next) => {
+  try {
+    const { page } = req.body;
+    const currentPage = page || 1;
+    const perPage = 15;
+    const orders = await Order.find()
+      .skip((currentPage - 1) * perPage)
+      .populate("products.product")
+      .sort({ createdAt: 1 })
+      .limit(perPage);
+    res
+      .status(200)
+      .json({ data: orders, message: "Fetched orders successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.getUserOrder = async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.user.email });
+    const orders = await Order.find({ orderedBy: user._id }).populate(
+      "products.product"
+    );
+    res
+      .status(200)
+      .json({ data: orders, message: "Fetched user orders successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.ordersCount = async (req, res, next) => {
+  try {
+    const total = await Order.find().estimatedDocumentCount();
+    res.status(200).json({
+      data: total,
+      message: "Total Products count fetched successfully.",
+    });
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.updateOrderStatus = async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
+    const { orderStatus } = req.body;
+    const updatedOrder = await Order.findByIdAndUpdate(
+      orderId,
+      { orderStatus: orderStatus },
+      { new: true }
+    );
+    res.status(201).json({
+      data: updatedOrder,
+      message: "order status updated successfully.",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};

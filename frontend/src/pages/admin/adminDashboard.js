@@ -1,14 +1,153 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { toast } from "react-toastify";
+import { Spin } from "antd";
+import { Pagination } from "antd";
 
 import AdminSideNav from "../../components/adminSideNav";
+import {
+  getAllOrders,
+  updateOrderStatus,
+  ordersCount,
+} from "../../functions/order";
 
-function AdminDashboard() {
+function AdminDashboard(props) {
+  const [loading, setLoading] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [page, setPage] = useState(0);
+  const [count, setCount] = useState(0);
+  const { user } = props;
+
+  useEffect(() => {
+    totalOrders();
+    loadOrders();
+  }, [page]);
+
+  const totalOrders = async () => {
+    try {
+      setLoading(true);
+      const res = await ordersCount();
+      setCount(res.data.data);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      toast.error(err.message);
+    }
+  };
+
+  const loadOrders = async () => {
+    try {
+      setLoading(true);
+      const res = await getAllOrders(user.token, page);
+      setOrders(res.data.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      toast.error(err.message);
+    }
+  };
+
+  const updateStatus = async (e, o) => {
+    try {
+      setLoading(true);
+      const res = await updateOrderStatus(user.token, o._id, e.target.value);
+      toast.success("status updated successfully");
+      loadOrders();
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className>
       <AdminSideNav />
-      <h1 className="text-center">Dashboard</h1>
+      {loading ? (
+        <div className="center-spinner">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <>
+          <div
+            className="d-flex flex-column align-items-center"
+            style={{ gap: "15px" }}
+          >
+            <h2 className="my-2">Dashboard</h2>
+            <div className="row p-2" style={{ width: "80%" }}>
+              {orders.length > 0 &&
+                orders.map((o) => {
+                  return (
+                    <div className=" col-sm-3" key={o._id}>
+                      <div className="border p-2">
+                        <p>Id: {o._id}</p>
+                        <p>User Id: {o.orderedBy}</p>
+                        <p>
+                          Ordered At:{" "}
+                          {new Date(
+                            o.paymentIntent.created * 1000
+                          ).toLocaleString()}
+                        </p>
+                        <p>Amount : Rs. {o.paymentIntent.amount / 100}</p>
+                        <label>Status: </label>
+                        <select
+                          className="form-control"
+                          onChange={(e) => {
+                            updateStatus(e, o);
+                          }}
+                        >
+                          <option
+                            value="Not Processed"
+                            selected={o.orderStatus === "Not Processed"}
+                          >
+                            Not Processed
+                          </option>
+                          <option
+                            value="Processing"
+                            selected={o.orderStatus === "Processing"}
+                          >
+                            Processing
+                          </option>
+                          <option
+                            value="Dispatched"
+                            selected={o.orderStatus === "Dispatched"}
+                          >
+                            Dispatched
+                          </option>
+                          <option
+                            value="Cancelled"
+                            selected={o.orderStatus === "Cancelled"}
+                          >
+                            Cancelled
+                          </option>
+                          <option
+                            value="Completed"
+                            selected={o.orderStatus === "Completed"}
+                          >
+                            Completed
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+            <Pagination
+              current={page}
+              total={(count / 15) * 10}
+              onChange={(value) => setPage(value)}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }
 
-export default AdminDashboard;
+const mapStateToProps = (state) => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps)(AdminDashboard);
