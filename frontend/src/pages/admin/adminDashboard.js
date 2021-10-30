@@ -105,6 +105,12 @@ function AdminDashboard(props) {
                             Not Processed
                           </option>
                           <option
+                            value="Cash On Delivery"
+                            selected={o.orderStatus === "Cash On Delivery"}
+                          >
+                            Cash On Delivery
+                          </option>
+                          <option
                             value="Processing"
                             selected={o.orderStatus === "Processing"}
                           >

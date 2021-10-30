@@ -4,11 +4,17 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Spin } from "antd";
 
-import { appliedCoupon } from "../../actions/index";
-import { getUserCart, applyDiscountCoupon } from "../../functions/auth";
+import { appliedCoupon, CODAction, addToCartAction } from "../../actions/index";
+import {
+  getUserCart,
+  applyDiscountCoupon,
+  deleteUserCart,
+} from "../../functions/auth";
+import { createCashOrderForUser } from "../../functions/order";
+import history from "../../history";
 
 function Checkout(props) {
-  const { user } = props;
+  const { user, couponApplied } = props;
   const [coupon, setCoupon] = useState("");
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
@@ -51,6 +57,30 @@ function Checkout(props) {
         setCoupon("");
       }
       setLoading(false);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+      setLoading(false);
+    }
+  };
+
+  const cashOnDelivery = async () => {
+    await props.CODAction(true);
+    try {
+      setLoading(true);
+      const res = await createCashOrderForUser(user.token, couponApplied, true);
+      if (res.data.ok) {
+        if (typeof window !== undefined) {
+          localStorage.removeItem("cart");
+          props.appliedCoupon(false);
+          props.addToCartAction([]);
+          await deleteUserCart(user.token);
+          setLoading(false);
+          setTimeout(() => {
+            history.push("/user/history");
+          }, 1000);
+        }
+      }
     } catch (err) {
       console.log(err);
       toast.error(err.message);
@@ -121,9 +151,17 @@ function Checkout(props) {
         </div>
         <div>
           <Link to="/payment">
-            <button className="btn btn-success m-2">Place Order</button>
+            <button className="btn btn-success m-2" disabled={!user.address}>
+              Checkout
+            </button>
           </Link>
-          <button className="btn btn-primary m-2">Cash on Delivery</button>
+          <button
+            className="btn btn-primary m-2"
+            disabled={!user.address}
+            onClick={cashOnDelivery}
+          >
+            Cash on Delivery
+          </button>
         </div>
       </div>
     </div>
@@ -131,9 +169,11 @@ function Checkout(props) {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user };
+  return { user: state.user, couponApplied: state.coupon };
 };
 
-export default connect(mapStateToProps, { appliedCoupon: appliedCoupon })(
-  Checkout
-);
+export default connect(mapStateToProps, {
+  appliedCoupon: appliedCoupon,
+  CODAction: CODAction,
+  addToCartAction: addToCartAction,
+})(Checkout);

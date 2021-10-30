@@ -18,4 +18,6 @@ router.put(
   orderController.updateOrderStatus
 );
 
+router.post("/user/cash-order", [authCheck], orderController.createCashOrder);
+
 module.exports = router;

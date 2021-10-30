@@ -20,6 +20,7 @@ const orderSchema = new Schema({
       "Dispatched",
       "Cancelled",
       "Completed",
+      "Cash On Delivery",
     ],
   },
   orderedBy: { type: ObjectId, ref: "User" },

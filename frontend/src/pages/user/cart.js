@@ -188,7 +188,7 @@ function Cart(props) {
                 className="cart-button"
                 disabled={!cart.length}
               >
-                Checkout
+                Place Order
               </button>
             )}
           </div>

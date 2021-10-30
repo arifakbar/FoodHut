@@ -4,6 +4,7 @@ import {
   LOGGED_IN_USER,
   ADD_TO_CART,
   COUPON_APPLIED,
+  COD,
 } from "./types";
 
 import firebase from "firebase/compat/app";
@@ -56,6 +57,13 @@ export const addToCartAction = (unique) => {
 export const appliedCoupon = (status) => {
   return {
     type: COUPON_APPLIED,
+    payload: status,
+  };
+};
+
+export const CODAction = (status) => {
+  return {
+    type: COD,
     payload: status,
   };
 };
