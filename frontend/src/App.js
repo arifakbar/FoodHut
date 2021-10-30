@@ -46,6 +46,7 @@ import Press from "./pages/press";
 import SingleProduct from "./pages/SingleProduct";
 import SingleCategory from "./pages/SingleCategory";
 import SingleSubCategory from "./pages/SingleSubCategory";
+import AdminContact from "./pages/admin/adminContact";
 
 function App(props) {
   useEffect(() => {
@@ -105,6 +106,7 @@ function App(props) {
           exact
           component={AdminReservations}
         />
+        <AdminRoute path="/admin/contacts" exact component={AdminContact} />
         <AdminRoute path="/admin/product" exact component={Product} />
         <AdminRoute path="/admin/products" exact component={Products} />
         <AdminRoute path="/admin/category" exact component={Category} />

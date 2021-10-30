@@ -1498,6 +1498,98 @@ footer a {
   gap: 25px;
 }
 
+.contact-container {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding-top: 25px;
+}
+
+.contact-details {
+  width: 50%;
+  height: 100%;
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 45px;
+}
+
+.contact-details h4 {
+  font-size: 25px;
+  text-transform: uppercase;
+}
+
+.contact-details p {
+  opacity: 0.8;
+  font-size: 15px;
+}
+
+.contact-details i {
+  color: #da9816;
+}
+
+.contact-details a {
+  font-size: 35px;
+}
+
+.contact-details a > i {
+  transition: 0.5s ease-in-out all;
+}
+
+.contact-details a:hover > i {
+  color: black;
+}
+
+.contact-form {
+  width: 50%;
+  height: 100%;
+  margin: 25px;
+}
+
+.contact-form form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 25px;
+}
+
+.contact-form form input {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  background-color: #f3f1ed;
+}
+
+.contact-form form input::placeholder,
+.contact-form form textarea::placeholder {
+  font-size: 15px;
+  font-weight: 550;
+}
+
+.contact-form form textarea {
+  width: 100%;
+  height: 150px;
+  outline: none;
+  padding: 10px;
+  border: none;
+  background-color: #f3f1ed;
+}
+
+.contact-form form button {
+  background-color: #da9816;
+  border: none;
+  width: 100%;
+  padding: 15px 0;
+  color: white;
+  font-weight: 550;
+}
+
 @media (max-width: 580px) {
   .change-search {
     align-items: start !important;

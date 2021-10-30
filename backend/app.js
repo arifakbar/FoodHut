@@ -15,6 +15,7 @@ const couponRouter = require("./routes/coupon");
 const reservationRoutes = require("./routes/reservation");
 const stripeRoutes = require("./routes/stripe");
 const orderRoutes = require("./routes/order");
+const contactRoutes = require("./routes/contact");
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use("/api", couponRouter);
 app.use("/api", reservationRoutes);
 app.use("/api", stripeRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", contactRoutes);
 
 //port
 const port = process.env.PORT || 8000;

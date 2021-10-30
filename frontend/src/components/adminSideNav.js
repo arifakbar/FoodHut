@@ -40,6 +40,9 @@ function AdminSideNav() {
       <Link to="/admin/sub-category">
         <div>Sub-Category</div>
       </Link>
+      <Link to="/admin/contacts">
+        <div>Contacts</div>
+      </Link>
       <Link to="/admin/coupons">
         <div>Coupons</div>
       </Link>
