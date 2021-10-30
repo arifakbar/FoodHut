@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import menuFFPizza from "../images/menu-ff-pizza.jpg";
 import menuFFFrankie from "../images/menu-ff-frankie.jpg";
@@ -64,7 +65,9 @@ function Menu() {
               nonumy
             </p>
             <small>Lorem ipsum dolor sit amet, consetetur</small>
-            <button className="menu-button">View Snacks</button>
+            <Link to={`/category/snacks`}>
+              <button className="menu-button">View Snacks</button>
+            </Link>
           </div>
         </div>
         <br />
@@ -78,7 +81,9 @@ function Menu() {
               style={{ position: "absolute", top: "-10%", left: "0" }}
             />
             <small>Lorem ipsum dolor sit amet, consetetur</small>
-            <button className="menu-button">View Full Course</button>
+            <Link to={`/category/full-course`}>
+              <button className="menu-button">View Full Course</button>
+            </Link>
           </div>
           <div style={{ height: "100%", width: "50%" }}>
             <div style={{ height: "100%", width: "100%", overflow: "hidden" }}>
@@ -135,9 +140,15 @@ function Menu() {
             <h1>Drinks</h1>
             <small>Lorem ipsum dolor sit amet, consetetur</small>
             <div className="menu-drinks-buttons">
-              <button className="menu-button">View Soups</button>
-              <button className="menu-button">View Mocktails</button>
-              <button className="menu-button">View Shakes</button>
+              <Link to={`/sub-category/soups`}>
+                <button className="menu-button">View Soups</button>
+              </Link>
+              <Link to={`/sub-category/mocktails`}>
+                <button className="menu-button">View Mocktails</button>
+              </Link>
+              <Link to={`/sub-category/shakes`}>
+                <button className="menu-button">View Shakes</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -163,7 +174,9 @@ function Menu() {
           <div className="menu-desserts-content">
             <h1>Sweets</h1>
             <small>Lorem ipsum dolor sit amet, consetetur</small>
-            <button className="menu-button">View Sweets</button>
+            <Link to={`/category/sweets`}>
+              <button className="menu-button">View Sweets</button>
+            </Link>
           </div>
           <div className="menu-desserts">
             <div className="menu-desserts-images">

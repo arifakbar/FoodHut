@@ -1,4 +1,5 @@
 const Category = require("../models/category");
+const Product = require("../models/product");
 
 const slugify = require("slugify");
 
@@ -6,11 +7,13 @@ exports.getCategory = async (req, res, next) => {
   const { slug } = req.params;
   try {
     const cat = await Category.findOne({ slug: slug });
+    const products = await Product.find({ category: cat }).populate("category");
     if (!cat) {
       return res.status(404).json({ message: "Category not found!" });
     }
     return res.status(200).json({
       data: cat,
+      products: products,
       message: "Category fetched successfully",
     });
   } catch (err) {

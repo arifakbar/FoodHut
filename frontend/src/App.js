@@ -36,7 +36,6 @@ import AdminReservations from "./pages/admin/adminReservations";
 import UserReservations from "./pages/user/userReservations";
 import SearchFilter from "./pages/SearchFilter";
 import Cart from "./pages/user/cart";
-
 import { auth } from "./firebase/firebase";
 import { currentUserInfo } from "./actions/index";
 import { currentUser } from "./functions/auth";
@@ -44,6 +43,9 @@ import ChangeAddress from "./pages/user/changeAddress";
 import Checkout from "./pages/user/checkout";
 import Payment from "./pages/user/payment";
 import Press from "./pages/press";
+import SingleProduct from "./pages/SingleProduct";
+import SingleCategory from "./pages/SingleCategory";
+import SingleSubCategory from "./pages/SingleSubCategory";
 
 function App(props) {
   useEffect(() => {
@@ -73,6 +75,9 @@ function App(props) {
         <Route path="/menu" exact component={Menu} />
         <Route path="/contact" exact component={Contact} />
         <Route path="/press" exact component={Press} />
+        <Route path="/product/:productId" exact component={SingleProduct} />
+        <Route path="/category/:slug" exact component={SingleCategory} />
+        <Route path="/sub-category/:slug" exact component={SingleSubCategory} />
         <Route path="/reservation" exact component={Reservation} />
         <Route path="/search" exact component={SearchFilter} />
         <Route path="/cart" exact component={Cart} />

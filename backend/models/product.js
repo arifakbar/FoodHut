@@ -35,7 +35,7 @@ const productSchema = new Schema(
     quantity: Number,
     sold: { type: Number, default: 0 },
     images: Array,
-    //     ratings: [{ star: Number, postedBy: { type: ObjectId, ref: "User" } }],
+    ratings: [{ star: Number, postedBy: { type: ObjectId, ref: "User" } }],
   },
   { timestamps: true }
 );

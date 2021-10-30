@@ -53,7 +53,7 @@ function UserReservations(props) {
   };
 
   return (
-    <div className>
+    <div>
       <UserSideNav />
       {loading ? (
         <div className="center-spinner">

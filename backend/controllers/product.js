@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const slugify = require("slugify");
+const User = require("../models/user");
 
 exports.productsCount = async (req, res, next) => {
   try {
@@ -130,5 +131,66 @@ exports.searchProduct = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.relatedProducts = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+    const product = await Product.findById(productId);
+    const realted = await Product.find({
+      _id: { $ne: product._id },
+      category: product.category,
+    })
+      .limit(3)
+      .populate("subCategory");
+    res.status(200).json({
+      data: realted,
+      message: "Related products fetched successfully.",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.productRating = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.productId);
+    const { star } = req.body;
+    const user = await User.findOne({ email: req.user.email });
+    let existingRatedProduct = product.ratings.find(
+      (e) => e.postedBy.toString() === user._id.toString()
+    );
+    if (existingRatedProduct === undefined) {
+      let addedRatings = await Product.findByIdAndUpdate(
+        product._id,
+        {
+          $push: { ratings: { star: star, postedBy: user._id } },
+        },
+        { new: true }
+      );
+      res.status(200).json({
+        message: "Ratings added successfully",
+        data: addedRatings,
+      });
+    } else {
+      const updatedRating = await Product.updateOne(
+        {
+          ratings: { $elemMatch: existingRatedProduct },
+        },
+        { $set: { "ratings.$.star": star } },
+        { new: true }
+      );
+      res.status(200).json({
+        message: "Ratings updated successfully",
+        data: updatedRating,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      error: "Some error occured!",
+    });
   }
 };

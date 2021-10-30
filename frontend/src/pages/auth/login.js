@@ -135,7 +135,7 @@ function Login(props) {
                 className="btn btn-raised mb-3 py-3 "
                 style={{ width: "60%" }}
               >
-                <i class="fab fa-google fa-x"></i>&nbsp;&nbsp;GOOGLE LOGIN
+                <i className="fab fa-google fa-x"></i>&nbsp;&nbsp;GOOGLE LOGIN
               </button>
             </div>
           </form>

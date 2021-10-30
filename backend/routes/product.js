@@ -32,4 +32,12 @@ router.delete(
 
 router.post("/products/search", productController.searchProduct);
 
+router.get("/product/related/:productId", productController.relatedProducts);
+
+router.post(
+  "/product/star/:productId",
+  [authCheck],
+  productController.productRating
+);
+
 module.exports = router;

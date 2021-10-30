@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Spin, Slider, Card, Tooltip } from "antd";
-import _ from "lodash";
 import { connect } from "react-redux";
+import _ from "lodash";
+import { Link } from "react-router-dom";
 
 import { getProductsByCount, searchProduct } from "../functions/product";
 import { getAllSubCategoris } from "../functions/subCategory";
 import { getAllCategories } from "../functions/category";
 import Star from "../components/Star";
 import Search from "../components/Search";
-import { addToCartAction } from "../actions/index";
-import { Link } from "react-router-dom";
 import Footer from "../components/footer";
+import SideCart from "../components/forms/SideCart";
+import { addToCartAction } from "../actions/index";
+import balckBg1 from "../images/block-bg-1.png";
+import balckBg2 from "../images/block-bg-2.png";
 
 const { Meta } = Card;
 
 function SearchFilter(props) {
-  const { cart } = props;
-
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState(false);
   const [cats, setCats] = useState([]);
@@ -93,6 +94,15 @@ function SearchFilter(props) {
       if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
       }
+      let found = false;
+      cart.forEach((c) => {
+        if (c._id === p._id) {
+          found = true;
+        }
+      });
+      if (found === true) {
+        return;
+      }
       cart.push({ ...p, count: 1 });
       let unique = _.uniqWith(cart, _.isEqual);
       localStorage.setItem("cart", JSON.stringify(unique));
@@ -101,46 +111,22 @@ function SearchFilter(props) {
     }
   };
 
-  const handleQuantityChange = (e, p) => {
-    let count = e.target.value < 1 ? 1 : e.target.value;
-    if (count >= p.quantity - 1) {
-      toast.error("Max quantity reached");
-      return;
-    }
-    let cart = [];
-    if (typeof window !== undefined) {
-      if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-      }
-      cart.map((product, i) => {
-        if (p._id === product._id) {
-          cart[i].count = e.target.value;
-        }
-      });
-      localStorage.setItem("cart", JSON.stringify(cart));
-      props.addToCartAction(cart);
-    }
-  };
-
-  const removeFromCart = (p) => {
-    let cart = [];
-    if (typeof window !== undefined) {
-      if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-      }
-      cart.map((product, i) => {
-        if (p._id === product._id) {
-          cart.splice(i, 1);
-        }
-      });
-      localStorage.setItem("cart", JSON.stringify(cart));
-      props.addToCartAction(cart);
-    }
-  };
-
   return (
     <>
-      <div className="container-fluid searchFilter-container">
+      <div
+        className="container-fluid searchFilter-container position-relative"
+        style={{ minHeight: "100vh" }}
+      >
+        <img
+          src={balckBg1}
+          alt="NF"
+          style={{ position: "absolute", top: "63.5%", right: "0%" }}
+        />
+        <img
+          src={balckBg2}
+          alt="NF"
+          style={{ position: "absolute", top: "5%", left: "0%" }}
+        />
         {loading ? (
           <div className="center-spinner">
             <Spin size="large" />
@@ -280,14 +266,14 @@ function SearchFilter(props) {
                   {products.length > 0 &&
                     products.map((p) => {
                       return (
-                        <div className="mt-2 my-2 col-sm-3" key={p._id}>
+                        <div className="mt-2 my-2 col-sm-4" key={p._id}>
                           <Card
                             hoverable
                             cover={
                               <img
                                 alt="example"
                                 src={p.images && p.images[0].url}
-                                style={{ height: "150px", objectFit: "fill" }}
+                                style={{ height: "200px", objectFit: "fill" }}
                               />
                             }
                             actions={[
@@ -309,6 +295,15 @@ function SearchFilter(props) {
                               >
                                 {p.quantity <= 1 ? "Out of Stock" : "ADD"}
                               </button>,
+                              <Link to={`/product/${p._id}`}>
+                                <button
+                                  className="btn btn-raised btn-primary"
+                                  style={{ width: "80%" }}
+                                >
+                                  View
+                                </button>
+                                ,
+                              </Link>,
                             ]}
                           >
                             <Meta
@@ -331,107 +326,7 @@ function SearchFilter(props) {
                 </div>
               </div>
             </div>
-            <div className="filter-cart">
-              <h4>Your Cart</h4>
-              <div className="cart-items">
-                {cart.length <= 0 ? (
-                  <div className="empty-cart">
-                    <div className="cart-icon-container">
-                      <i className="fas fa-shopping-cart"></i>
-                    </div>
-                    <p>Add itmes to get started</p>
-                  </div>
-                ) : (
-                  <>
-                    <div className="border d-flex m-2 align-items-center justify-content-evenly py-2">
-                      <p style={{ width: "40px" }}></p>
-                      <p
-                        style={{
-                          width: "100px",
-                        }}
-                      >
-                        Name
-                      </p>
-                      <p
-                        style={{
-                          width: "60px",
-                        }}
-                      >
-                        Price
-                      </p>
-                      <p
-                        style={{
-                          width: "40px",
-                        }}
-                      >
-                        Qty
-                      </p>
-                      <p
-                        style={{
-                          width: "60px",
-                        }}
-                      >
-                        Total
-                      </p>
-                    </div>
-                    {cart.map((c) => {
-                      return (
-                        <div
-                          key={c._id}
-                          className="border d-flex m-2 align-items-center justify-content-evenly py-2"
-                        >
-                          <button
-                            className="cart-remove-btn"
-                            style={{ width: "40px" }}
-                            onClick={() => removeFromCart(c)}
-                          >
-                            X
-                          </button>
-                          <p
-                            className="m-0"
-                            style={{
-                              width: "100px",
-                            }}
-                          >
-                            {c.title && c.title.substring(0, 10)}
-                          </p>
-                          <p
-                            className="m-0"
-                            style={{
-                              width: "60px",
-                            }}
-                          >
-                            Rs. {c.price}
-                          </p>
-                          <input
-                            type="number"
-                            value={c.count}
-                            style={{
-                              width: "40px",
-                            }}
-                            min={1}
-                            onChange={(e) => handleQuantityChange(e, c)}
-                          />
-                          <p
-                            className="m-0"
-                            style={{
-                              width: "60px",
-                            }}
-                          >
-                            Rs. {c.count * c.price}
-                          </p>
-                        </div>
-                      );
-                    })}
-                  </>
-                )}
-              </div>
-              <div className="cart-button-div">
-                <Link to="/cart" className="cart-button">
-                  Go to Cart
-                </Link>
-              </div>
-            </div>
+            <SideCart />
           </>
         )}
       </div>
@@ -440,10 +335,6 @@ function SearchFilter(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return { cart: state.cart, user: state.user };
-};
-
-export default connect(mapStateToProps, { addToCartAction: addToCartAction })(
+export default connect(null, { addToCartAction: addToCartAction })(
   SearchFilter
 );

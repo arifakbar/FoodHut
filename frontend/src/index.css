@@ -1425,6 +1425,79 @@ footer a {
   font-weight: 450;
 }
 
+.product-container {
+  width: 70%;
+}
+
+.product-details {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.carousel-div {
+  height: 100%;
+  width: 40%;
+  overflow: hidden;
+}
+
+.carousel-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 0;
+}
+
+.slider img {
+  height: 400px;
+  width: 100%;
+  object-fit: fill;
+}
+
+.thumbs-wrapper {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0 !important;
+}
+
+.thumb {
+  height: 100px;
+  width: 100px !important;
+}
+
+.thumb img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.info-div {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 45px 0;
+  gap: 5px;
+}
+
+.related-products {
+  margin: 25px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
 @media (max-width: 580px) {
   .change-search {
     align-items: start !important;

@@ -46,3 +46,22 @@ export const searchProduct = async (query) => {
     query: query,
   });
 };
+
+export const relatedProducts = async (productId) => {
+  return await axios.get(
+    process.env.REACT_APP_API + "/product/related/" + productId
+  );
+};
+
+export const productStar = async (authToken, star, productId) => {
+  console.log(star);
+  return await axios.post(
+    process.env.REACT_APP_API + "/product/star/" + productId,
+    {
+      star: star,
+    },
+    {
+      headers: { authToken: authToken },
+    }
+  );
+};

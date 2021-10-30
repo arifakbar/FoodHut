@@ -1,4 +1,5 @@
 const SubCategory = require("../models/subcategory");
+const Product = require("../models/product");
 
 const slugify = require("slugify");
 
@@ -21,8 +22,12 @@ exports.getSubCategory = async (req, res, next) => {
   const { slug } = req.params;
   try {
     const sub = await SubCategory.findOne({ slug: slug });
+    const products = await Product.find({ subCategory: sub }).populate(
+      "subCategory"
+    );
     res.status(200).json({
       data: sub,
+      products: products,
       message: "Sub-category fetched successfully.",
     });
   } catch (err) {

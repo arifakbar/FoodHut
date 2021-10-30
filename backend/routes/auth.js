@@ -39,4 +39,14 @@ router.post(
   authController.applyDiscountCoupon
 );
 
+router.post("/user/wishlist", [authCheck], authController.addToWishlist);
+
+router.put(
+  "/user/wishlist/:productId",
+  [authCheck],
+  authController.removeFromWishlist
+);
+
+router.get("/user/wishlists", [authCheck], authController.userWishlists);
+
 module.exports = router;

@@ -21,12 +21,13 @@ const userSchema = new Schema(
     },
     address: { type: String, default: "" },
     phoneNumber: { type: Number, default: 0 },
-    /*
-        wishlist : [{
-                type:ObjectId,
-                ref:"Product"
-        }],
-  */
+
+    wishlist: [
+      {
+        type: ObjectId,
+        ref: "Product",
+      },
+    ],
   },
 
   { timestamps: true }

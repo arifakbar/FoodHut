@@ -211,3 +211,52 @@ exports.applyDiscountCoupon = async (req, res, next) => {
     res.send(500).json({ err: "Some error occured" });
   }
 };
+
+exports.userWishlists = async (req, res, next) => {
+  try {
+    const products = await User.findOne({ email: req.user.email })
+      .select("wishlist")
+      .populate("wishlist");
+    res
+      .status(200)
+      .json({ data: products, message: "User wishlist fetched successfully." });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.addToWishlist = async (req, res, next) => {
+  try {
+    const { productId } = req.body;
+    await User.findOneAndUpdate(
+      { email: req.user.email },
+      { $addToSet: { wishlist: productId } },
+      { new: true }
+    );
+    res
+      .status(201)
+      .json({ ok: true, message: "Product added to wishlist successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.removeFromWishlist = async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+    await User.findOneAndUpdate(
+      { email: req.user.email },
+      { $pull: { wishlist: productId } },
+      { new: true }
+    );
+    res.status(201).json({
+      ok: true,
+      message: "Product removed from wishlist successfully",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
