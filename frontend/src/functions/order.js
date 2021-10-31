@@ -62,3 +62,9 @@ export const createCashOrderForUser = async (authToken, couponApplied, COD) => {
     }
   );
 };
+
+export const getOrderStatus = async (authToken, orderId) => {
+  return await axios.get(process.env.REACT_APP_API + "/order/" + orderId, {
+    headers: { authToken: authToken },
+  });
+};

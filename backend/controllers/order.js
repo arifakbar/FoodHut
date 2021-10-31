@@ -155,3 +155,17 @@ exports.createCashOrder = async (req, res, next) => {
     res.status(500).json({ err: "Some error occured" });
   }
 };
+
+exports.getOrderStatus = async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
+    const order = await Order.findById(orderId);
+    res.status(200).json({
+      data: order.orderStatus,
+      message: "Order status fetched sucessfully",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};

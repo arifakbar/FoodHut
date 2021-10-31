@@ -47,6 +47,7 @@ import SingleProduct from "./pages/SingleProduct";
 import SingleCategory from "./pages/SingleCategory";
 import SingleSubCategory from "./pages/SingleSubCategory";
 import AdminContact from "./pages/admin/adminContact";
+import OrderTrack from "./pages/user/orderTrack";
 
 function App(props) {
   useEffect(() => {
@@ -100,6 +101,7 @@ function App(props) {
           exact
           component={ChangePhoneNumber}
         />
+        <UserRoute path="/order-status/:orderId" exact component={OrderTrack} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
         <AdminRoute
           path="/admin/reservations"

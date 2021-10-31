@@ -1590,6 +1590,45 @@ footer a {
   font-weight: 550;
 }
 
+.status-container {
+  display: flex;
+  height: 50vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.status-container i {
+  display: none;
+}
+
+.currently {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.currently > p {
+  color: #ffaa00;
+  font-weight: 550;
+  font-size: 25px;
+}
+
+.currently > i {
+  display: block;
+  font-size: 20px;
+  color: red;
+}
+
+.connect-line {
+  height: 2px;
+  width: 8%;
+  background: #000;
+  margin-bottom: 15px;
+}
+
 @media (max-width: 580px) {
   .change-search {
     align-items: start !important;

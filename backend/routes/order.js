@@ -20,4 +20,6 @@ router.put(
 
 router.post("/user/cash-order", [authCheck], orderController.createCashOrder);
 
+router.get("/order/:orderId", [authCheck], orderController.getOrderStatus);
+
 module.exports = router;

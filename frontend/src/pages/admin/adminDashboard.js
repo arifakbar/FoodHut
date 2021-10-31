@@ -99,10 +99,10 @@ function AdminDashboard(props) {
                           }}
                         >
                           <option
-                            value="Not Processed"
-                            selected={o.orderStatus === "Not Processed"}
+                            value="Order Placed"
+                            selected={o.orderStatus === "Order Placed"}
                           >
-                            Not Processed
+                            Order Placed
                           </option>
                           <option
                             value="Cash On Delivery"
@@ -111,22 +111,28 @@ function AdminDashboard(props) {
                             Cash On Delivery
                           </option>
                           <option
-                            value="Processing"
-                            selected={o.orderStatus === "Processing"}
+                            value="Order Confirmation"
+                            selected={o.orderStatus === "Order Confirmation"}
                           >
-                            Processing
+                            Order Confirmation
                           </option>
                           <option
-                            value="Dispatched"
-                            selected={o.orderStatus === "Dispatched"}
+                            value="Prepration"
+                            selected={o.orderStatus === "Prepration"}
                           >
-                            Dispatched
+                            Prepration
                           </option>
                           <option
                             value="Cancelled"
                             selected={o.orderStatus === "Cancelled"}
                           >
                             Cancelled
+                          </option>
+                          <option
+                            value="Out For Delivery"
+                            selected={o.orderStatus === "Out For Delivery"}
+                          >
+                            Out For Delivery
                           </option>
                           <option
                             value="Completed"

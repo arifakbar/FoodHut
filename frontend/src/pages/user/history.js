@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { Spin } from "antd";
-import { Pagination } from "antd";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import UserSideNav from "../../components/userSideNav";
 import { getUserOrders } from "../../functions/order";
 import balckBg1 from "../../images/block-bg-1.png";
 import balckBg2 from "../../images/block-bg-2.png";
+import { Link } from "react-router-dom";
+import Invoice from "../../components/Invoice";
 
 function History(props) {
   const { user } = props;
@@ -30,6 +32,18 @@ function History(props) {
       toast.error(err.message);
       setLoading(false);
     }
+  };
+
+  const showDownloadLink = (order) => {
+    return (
+      <PDFDownloadLink
+        className="btn btn-danger mx-3"
+        document={<Invoice order={order} />}
+        fileName="invoice.pdf"
+      >
+        Invoice
+      </PDFDownloadLink>
+    );
   };
 
   return (
@@ -89,10 +103,25 @@ function History(props) {
                               o.paymentIntent.created * 1000
                             ).toLocaleString()}
                           </p>
-                          <p>Delivery Status: {o.orderStatus}</p>
-                          <button className="btn btn-primary">
-                            Track Package
-                          </button>
+                          {/* <p>Delivery Status: {o.orderStatus}</p> */}
+                          {o.orderStatus !== "Cancelled" ? (
+                            <>
+                              <Link to={`/order-status/${o._id}`}>
+                                <button className="btn btn-primary">
+                                  Track Package
+                                </button>
+                              </Link>
+                              {showDownloadLink(o)}
+                            </>
+                          ) : (
+                            <button
+                              className="btn btn-dark"
+                              disabled
+                              style={{ width: "90%" }}
+                            >
+                              Order Cancelled
+                            </button>
+                          )}
                         </div>
                         <div
                           className="d-flex gap-3 px-3"
