@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const socket = require("socket.io");
 require("dotenv").config();
 
 //Routes
@@ -49,4 +50,30 @@ app.use("/api", contactRoutes);
 //port
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+const server = app.listen(port, () =>
+  console.log(`Server is running on port ${port}`)
+);
+
+const io = socket(server, {
+  cors: { origin: "http://localhost:3000" },
+});
+
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  socket.on("join", (orderId) => {
+    socket.join(orderId);
+    // console.log("orderId: ", orderId);
+  });
+
+  socket.on("orderUpdated", (order) => {
+    // console.log(
+    //   "orderId: " + order.orderId + " OrderStatus: " + order.orderStatus
+    // );
+    socket.to(order.orderId).emit("updated", order.orderStatus);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("A user disconnected");
+  });
+});

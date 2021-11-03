@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
+import { io } from "socket.io-client";
 
 import { getOrderStatus } from "../../functions/order";
 
@@ -11,9 +12,22 @@ function OrderTrack(props) {
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const socket = useRef();
+
   useEffect(() => {
     loadOrderStatus();
+    socket.current = io("ws://localhost:8000");
   }, []);
+
+  useEffect(() => {
+    socket.current.emit("join", orderId);
+  }, [orderId]);
+
+  useEffect(() => {
+    socket.current.on("updated", (status) => {
+      setStatus(status);
+    });
+  }, [status]);
 
   const loadOrderStatus = async () => {
     try {

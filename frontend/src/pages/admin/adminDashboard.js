@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { Spin } from "antd";
 import { Pagination } from "antd";
+import { io } from "socket.io-client";
 
 import AdminSideNav from "../../components/adminSideNav";
 import {
@@ -18,9 +19,12 @@ function AdminDashboard(props) {
   const [count, setCount] = useState(0);
   const { user } = props;
 
+  const socket = useRef();
+
   useEffect(() => {
     totalOrders();
     loadOrders();
+    socket.current = io("ws://localhost:8000");
   }, [page]);
 
   const totalOrders = async () => {
@@ -49,6 +53,10 @@ function AdminDashboard(props) {
   };
 
   const updateStatus = async (e, o) => {
+    socket.current.emit("orderUpdated", {
+      orderId: o._id,
+      orderStatus: e.target.value,
+    });
     try {
       setLoading(true);
       const res = await updateOrderStatus(user.token, o._id, e.target.value);
