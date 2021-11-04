@@ -54,7 +54,6 @@ export const relatedProducts = async (productId) => {
 };
 
 export const productStar = async (authToken, star, productId) => {
-  console.log(star);
   return await axios.post(
     process.env.REACT_APP_API + "/product/star/" + productId,
     {
@@ -64,4 +63,10 @@ export const productStar = async (authToken, star, productId) => {
       headers: { authToken: authToken },
     }
   );
+};
+
+export const filterProducts = async (filter) => {
+  return await axios.post(process.env.REACT_APP_API + "/filter/products", {
+    filter,
+  });
 };

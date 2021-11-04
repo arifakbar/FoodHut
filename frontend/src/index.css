@@ -1629,6 +1629,10 @@ footer a {
   margin-bottom: 15px;
 }
 
+.modal-backdrop.show {
+  display: none !important;
+}
+
 @media (max-width: 580px) {
   .change-search {
     align-items: start !important;

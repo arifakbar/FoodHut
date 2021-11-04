@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { Spin, Slider, Card, Tooltip } from "antd";
+import { Spin, Slider, Card } from "antd";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
-import { getProductsByCount, searchProduct } from "../functions/product";
+import { searchProduct, filterProducts } from "../functions/product";
 import { getAllSubCategoris } from "../functions/subCategory";
 import { getAllCategories } from "../functions/category";
 import Star from "../components/Star";
@@ -24,18 +24,20 @@ function SearchFilter(props) {
   const [cats, setCats] = useState([]);
   const [subs, setSubs] = useState([]);
   const [query, setQuery] = useState("");
-  const [tooltip, setTooltip] = useState("Click to Add");
 
   useEffect(() => {
-    loadProducts();
+    loadProducts({});
+  }, []);
+
+  useEffect(() => {
     loadCategories();
     loadSubCategories();
   }, []);
 
-  const loadProducts = async () => {
+  const loadProducts = async (args) => {
     try {
       setLoading(true);
-      const res = await getProductsByCount(5);
+      const res = await filterProducts(args);
       setProducts(res.data.data);
       setLoading(false);
     } catch (err) {
@@ -86,8 +88,6 @@ function SearchFilter(props) {
     }
   };
 
-  const handleStarClick = async () => {};
-
   const addToCart = async (p) => {
     let cart = [];
     if (typeof window !== undefined) {
@@ -107,15 +107,28 @@ function SearchFilter(props) {
       let unique = _.uniqWith(cart, _.isEqual);
       localStorage.setItem("cart", JSON.stringify(unique));
       props.addToCartAction(unique);
-      setTooltip("Added. Check your basket to set quantity.");
     }
+  };
+
+  const handleCategoryClick = (id) => {
+    loadProducts({ category: id });
+  };
+
+  const handleStarClick = (e) => {};
+
+  const handleSubCategoryClick = (id) => {
+    loadProducts({ subCategory: id });
+  };
+
+  const handleSliderClick = (value) => {
+    loadProducts({ price: value });
   };
 
   return (
     <>
       <div
         className="container-fluid searchFilter-container position-relative"
-        style={{ minHeight: "100vh" }}
+        style={{ minHeight: "124vh" }}
       >
         <img
           src={balckBg1}
@@ -136,10 +149,18 @@ function SearchFilter(props) {
             <div className="filters">
               <div className="filters-nav">
                 <div className="filter-cats">
-                  <button className="filter-btn">Snacks</button>
-                  <button className="filter-btn">Full Course</button>
-                  <button className="filter-btn">Drinks</button>
-                  <button className="filter-btn">Sweets</button>
+                  {cats &&
+                    cats.map((c) => {
+                      return (
+                        <button
+                          className="filter-btn"
+                          key={c._id}
+                          onClick={() => handleCategoryClick(c._id)}
+                        >
+                          {c.name}
+                        </button>
+                      );
+                    })}
                 </div>
 
                 <div className="filter-search">
@@ -166,9 +187,15 @@ function SearchFilter(props) {
                     aria-hidden="true"
                   >
                     <div className="modal-dialog">
-                      <div className="modal-content">
+                      <div
+                        className="modal-content"
+                        style={{ background: "#091921" }}
+                      >
                         <div className="modal-header">
-                          <h5 className="modal-title" id="exampleModalLabel">
+                          <h5
+                            className="modal-title text-white"
+                            id="exampleModalLabel"
+                          >
                             Filters
                           </h5>
                           <button
@@ -179,51 +206,66 @@ function SearchFilter(props) {
                           ></button>
                         </div>
                         <div className="modal-body">
-                          <div>
+                          <div className="text-white">
                             Range
-                            <Slider
+                            {/* <Slider
                               className="ml-4 mr-4"
                               tipFormatter={(v) => `Rs.${v}`}
                               range
-                              //   value={price}
-                              max={2000}
+                              name="price"
+                              onChange={handleSliderClick}
+                              // value={price}
+                              max={5000}
                               //   onChange={handlePriceSlider}
-                            />
+                            /> */}
+                            <div>
+                              <button
+                                className="btn btn-raised bg-white btn-sm mx-1"
+                                onClick={() => handleSliderClick([0, 500])}
+                              >
+                                0 - 500
+                              </button>
+                              <button
+                                className="btn btn-raised bg-white btn-sm mx-1"
+                                onClick={() => handleSliderClick([500, 1000])}
+                              >
+                                500 - 1000
+                              </button>
+                              <button
+                                className="btn btn-raised bg-white btn-sm mx-1"
+                                onClick={() => handleSliderClick([1000, 2000])}
+                              >
+                                1000 - 2000
+                              </button>
+                              <button
+                                className="btn btn-raised bg-white btn-sm mx-1"
+                                onClick={() => handleSliderClick([2000, 5000])}
+                              >
+                                2000 - 5000
+                              </button>
+                            </div>
                           </div>
-                          <hr />
-                          <div>
-                            Categories
-                            <br />
-                            {cats &&
-                              cats.map((c) => {
-                                return (
-                                  <button
-                                    className="btn btn-raised btn-sm m-1"
-                                    key={c._id}
-                                  >
-                                    {c.name}
-                                  </button>
-                                );
-                              })}
-                          </div>
-                          <hr />
-                          <div>
+                          <hr className="bg-white" />
+                          <div className="text-white">
                             Sub Categories
                             <br />
                             {cats &&
                               subs.map((s) => {
                                 return (
                                   <button
-                                    className="btn btn-raised btn-sm m-1"
+                                    className="btn btn-raised btn-sm m-1 bg-white"
                                     key={s._id}
+                                    onClick={() =>
+                                      handleSubCategoryClick(s._id)
+                                    }
                                   >
                                     {s.name}
                                   </button>
                                 );
                               })}
                           </div>
-                          <hr />
-                          <div>
+                          <hr className="bg-white" />
+                          <div className="text-white">
                             Ratings
                             <br />
                             <div className="pr-4 pl-4 pb-2">
@@ -234,12 +276,12 @@ function SearchFilter(props) {
                               <Star stars={5} starClick={handleStarClick} />
                             </div>
                           </div>
-                          <hr />
+                          <hr className="bg-white" />
                           <div>
-                            <button className="btn btn-raised btn-sm m-1">
+                            <button className="btn btn-raised bg-white btn-sm m-1">
                               Veg
                             </button>
-                            <button className="btn btn-raised btn-sm m-1">
+                            <button className="btn btn-raised bg-white btn-sm m-1">
                               Non-Veg
                             </button>
                           </div>
@@ -277,23 +319,13 @@ function SearchFilter(props) {
                               />
                             }
                             actions={[
-                              // <Tooltip title={tooltip}>
-                              //   <button
-                              //     className="btn btn-raised btn-success"
-                              //     style={{ width: "80%" }}
-                              //     disabled={p.quantity <= 1}
-                              //     onClick={() => addToCart(p)}
-                              //   >
-                              //     {p.quantity <= 1 ? "Out of Stock" : "ADD"}
-                              //   </button>
-                              // </Tooltip>,
                               <button
-                                className="btn btn-raised btn-success"
+                                className="btn btn-raised btn-success text-uppercase"
                                 style={{ width: "80%" }}
                                 disabled={p.quantity <= 1}
                                 onClick={() => addToCart(p)}
                               >
-                                {p.quantity <= 1 ? "Out of Stock" : "ADD"}
+                                {p.quantity <= 1 ? "unavailable" : "ADD"}
                               </button>,
                               <Link to={`/product/${p._id}`}>
                                 <button

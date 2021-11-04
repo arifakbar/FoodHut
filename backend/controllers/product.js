@@ -194,3 +194,26 @@ exports.productRating = async (req, res, next) => {
     });
   }
 };
+
+exports.filterProducts = async (req, res, next) => {
+  try {
+    console.log(req.body.filter);
+    const { filter } = req.body;
+    if (filter.price) {
+      const products = await Product.find({
+        price: { $gte: filter.price[0], $lte: filter.price[1] },
+      });
+      res
+        .status(200)
+        .json({ data: products, message: "Products filtered successfully." });
+    } else {
+      const products = await Product.find(filter);
+      res
+        .status(200)
+        .json({ data: products, message: "Products filtered successfully." });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};

@@ -40,4 +40,6 @@ router.post(
   productController.productRating
 );
 
+router.post("/filter/products", productController.filterProducts);
+
 module.exports = router;
