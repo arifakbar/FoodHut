@@ -43,6 +43,9 @@ function OrderTrack(props) {
   return (
     <div className="container p-5">
       <h3 className="text-center">Order Status</h3>
+      <p className="text-center mt-5">
+        Order ID: <b>{orderId}</b>
+      </p>
       <div className="status-container">
         <div className={status === "Order Placed" && "currently"}>
           <p>Order Placed</p>

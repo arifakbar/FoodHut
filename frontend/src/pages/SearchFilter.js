@@ -114,7 +114,9 @@ function SearchFilter(props) {
     loadProducts({ category: id });
   };
 
-  const handleStarClick = (e) => {};
+  const handleStarClick = (value) => {
+    loadProducts({ stars: value });
+  };
 
   const handleSubCategoryClick = (id) => {
     loadProducts({ subCategory: id });
@@ -122,6 +124,10 @@ function SearchFilter(props) {
 
   const handleSliderClick = (value) => {
     loadProducts({ price: value });
+  };
+
+  const handleVegClick = (value) => {
+    loadProducts({ veg: value });
   };
 
   return (
@@ -189,7 +195,10 @@ function SearchFilter(props) {
                     <div className="modal-dialog">
                       <div
                         className="modal-content"
-                        style={{ background: "#091921" }}
+                        style={{
+                          background: "#091921",
+                          boxShadow: "0 5px 10px rgba(0,0,0,0.5)",
+                        }}
                       >
                         <div className="modal-header">
                           <h5
@@ -278,10 +287,20 @@ function SearchFilter(props) {
                           </div>
                           <hr className="bg-white" />
                           <div>
-                            <button className="btn btn-raised bg-white btn-sm m-1">
+                            <button
+                              className="btn btn-raised bg-white btn-sm m-1"
+                              onClick={() => {
+                                handleVegClick(true);
+                              }}
+                            >
                               Veg
                             </button>
-                            <button className="btn btn-raised bg-white btn-sm m-1">
+                            <button
+                              className="btn btn-raised bg-white btn-sm m-1"
+                              onClick={() => {
+                                handleVegClick(false);
+                              }}
+                            >
                               Non-Veg
                             </button>
                           </div>
@@ -293,9 +312,6 @@ function SearchFilter(props) {
                             data-mdb-dismiss="modal"
                           >
                             Close
-                          </button>
-                          <button type="button" className="btn btn-primary">
-                            Save changes
                           </button>
                         </div>
                       </div>

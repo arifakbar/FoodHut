@@ -167,6 +167,9 @@ function SingleProduct(props) {
                     {product && product.ratings && product.ratings.length > 0
                       ? showAverageRating(product)
                       : "No ratings yet!"}
+                    <button className="btn btn-sm btn-danger">
+                      {product.veg ? "Veg" : "Non-veg"}
+                    </button>
                     <hr style={{ height: "1px", width: "100%" }} />
                     <p className="m-0"> {product.description}</p>
                     <hr style={{ height: "1px", width: "100%" }} />

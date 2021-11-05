@@ -48,6 +48,7 @@ import SingleCategory from "./pages/SingleCategory";
 import SingleSubCategory from "./pages/SingleSubCategory";
 import AdminContact from "./pages/admin/adminContact";
 import OrderTrack from "./pages/user/orderTrack";
+import NF_404 from "./pages/NF_404";
 
 function App(props) {
   useEffect(() => {
@@ -134,6 +135,7 @@ function App(props) {
           exact
           component={EditProduct}
         />
+        <Route component={NF_404} />
       </Switch>
     </>
   );

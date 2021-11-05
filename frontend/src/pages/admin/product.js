@@ -26,6 +26,7 @@ function Product(props) {
   const [subCategories, setSubCategories] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [sold, setSold] = useState(0);
+  const [veg, setVeg] = useState(true);
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -71,6 +72,7 @@ function Product(props) {
       quantity: quantity,
       sold: sold,
       images: images,
+      veg: veg,
     };
     try {
       setLoading(true);
@@ -137,6 +139,17 @@ function Product(props) {
               />
             </div>
             <div className="mb-3">
+              <label className="form-label">Veg: </label>
+              <select
+                className="form-control"
+                value={veg}
+                onChange={(e) => setVeg(e.target.value)}
+              >
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </select>
+            </div>
+            <div className="mb-3">
               <label className="form-label">Category</label>
               <select
                 className="form-control"
@@ -174,6 +187,7 @@ function Product(props) {
                 </Select>
               </div>
             )}
+
             <div className="mb-3">
               <label className="form-label">Quantity : </label>
               <input

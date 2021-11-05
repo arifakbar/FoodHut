@@ -35,6 +35,7 @@ const productSchema = new Schema(
     quantity: Number,
     sold: { type: Number, default: 0 },
     images: Array,
+    veg: { type: Boolean, default: true },
     ratings: [{ star: Number, postedBy: { type: ObjectId, ref: "User" } }],
   },
   { timestamps: true }

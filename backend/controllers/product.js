@@ -67,6 +67,7 @@ exports.createProduct = async (req, res, next) => {
 exports.updateProduct = async (req, res, next) => {
   const { productId } = req.params;
   req.body.slug = slugify(req.body.title);
+  console.log("veg:" + req.body.veg);
   console.log(productId);
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -197,12 +198,27 @@ exports.productRating = async (req, res, next) => {
 
 exports.filterProducts = async (req, res, next) => {
   try {
-    console.log(req.body.filter);
     const { filter } = req.body;
     if (filter.price) {
       const products = await Product.find({
         price: { $gte: filter.price[0], $lte: filter.price[1] },
       });
+      res
+        .status(200)
+        .json({ data: products, message: "Products filtered successfully." });
+    } else if (filter.stars) {
+      const aggregates = await Product.aggregate([
+        {
+          $project: {
+            document: "$$ROOT",
+            floorAverage: {
+              $floor: { $avg: "$ratings.star" },
+            },
+          },
+        },
+        { $match: { floorAverage: filter.stars } },
+      ]).limit(12);
+      const products = await Product.find({ _id: aggregates });
       res
         .status(200)
         .json({ data: products, message: "Products filtered successfully." });

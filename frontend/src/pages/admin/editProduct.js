@@ -29,6 +29,7 @@ function EditProduct(props) {
   const [subCategories, setSubCategories] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [sold, setSold] = useState(0);
+  const [veg, setVeg] = useState(true);
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -49,6 +50,7 @@ function EditProduct(props) {
       setQuantity(res.data.data.quantity);
       setSold(res.data.data.sold);
       setImages(res.data.data.images);
+      setVeg(res.data.data.veg);
       const res2 = await getSubCategoryByParent(res.data.data.category._id);
       setSubs(res2.data.data);
       let arr = [];
@@ -104,6 +106,7 @@ function EditProduct(props) {
       quantity: quantity,
       sold: sold,
       images: images,
+      veg: veg,
     };
     try {
       setLoading(true);
@@ -167,6 +170,17 @@ function EditProduct(props) {
                 onChange={(e) => setPrice(e.target.value)}
                 placeholder="Enter product price"
               />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Veg: </label>
+              <select
+                className="form-control"
+                value={veg}
+                onChange={(e) => setVeg(e.target.value)}
+              >
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </select>
             </div>
             <div className="mb-3">
               <label className="form-label">Category</label>

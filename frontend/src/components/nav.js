@@ -54,7 +54,7 @@ function Nav(props) {
               Reservation
             </Link>
             <Link className="nav-link" to="/search">
-              Search
+              Shop
             </Link>
             <Link className="nav-link" to="/about">
               About
