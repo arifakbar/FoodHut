@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Spin } from "antd";
+import { toast } from "react-toastify";
 
 import balckBg1 from "../images/block-bg-1.png";
 import balckBg2 from "../images/block-bg-2.png";
 import image from "../images/menu-ff-pizza.jpg";
 import Footer from "../components/footer";
 
+import { allNews } from "../functions/press";
+
 function Press() {
+  const [press, setPress] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    loadNews();
+  }, []);
+
+  const loadNews = async () => {
+    try {
+      setLoading(true);
+      const res = await allNews();
+      setPress(res.data.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      toast.error(err.message);
+    }
+  };
+
   return (
     <div>
       <div style={{ height: "97vh" }}>
@@ -33,34 +57,17 @@ function Press() {
           <img src={image} alt="NF" />
         </div>
         <div className="press-info">
-          <div className="press-news">
-            <p>Posted on Nov 20, 2021</p>
-            <h3>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo
-            </p>
-            <a href="">Read More</a>
-          </div>
-          <div className="press-news">
-            <p>Posted on Nov 20, 2021</p>
-            <h3>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo
-            </p>
-            <a href="">Read More</a>
-          </div>
+          {press &&
+            press.map((p) => {
+              return (
+                <div className="press-news" key={p._id}>
+                  <p>Posted on {new Date(p.createdAt).toDateString()}</p>
+                  <h3>{p.title}</h3>
+                  <p>{p.content.substring(50)}...</p>
+                  <a href="">Read More</a>
+                </div>
+              );
+            })}
         </div>
       </div>
       <Footer />

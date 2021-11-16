@@ -42,4 +42,6 @@ router.post(
 
 router.post("/filter/products", productController.filterProducts);
 
+router.post("/most-rated", productController.mostRated);
+
 module.exports = router;

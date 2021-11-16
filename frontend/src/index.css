@@ -11,18 +11,166 @@ code {
 }
 
 nav {
+  position: relative;
+  z-index: 2;
+  height: 60px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+nav a,
+.nav2 a {
+  font-weight: 550;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+nav > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav i {
+  margin: 0 5px;
+}
+
+nav label > img {
+  height: 55px;
+  width: 55px;
+}
+
+.profile-pic {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-links {
+  position: absolute;
+  z-index: 2;
+  top: 61.5px;
+  right: 25px;
+  display: none;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  height: 80px;
+  width: 140px;
+  padding: 2px 0px;
+  gap: 5px;
+  border-radius: 5px;
+}
+
+.link-link {
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;
+  width: 100%;
+  height: 100%;
+  transition: 0.3s ease-in-out all;
+}
+
+.link-link:hover {
+  background-color: #ececec;
+}
+
+.link-divider {
+  width: 100%;
+  background-color: black;
+  height: 1px;
+  border: none;
+}
+
+.profile-pic > img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+
+.nav2 {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  gap: 5px;
+  overflow: hidden;
+  height: 0px;
+  transition: 0.5s ease-in-out all;
+}
+
+.link-login {
+  right: 5%;
+}
+
+.link-login > a {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 0 5px;
+}
+
+.autoHeight {
+  height: 365px;
+}
+
+.bars {
+  display: none;
+}
+
+.nav2 > a {
+  padding: 10px 25px;
+}
+
+.nav2 > div {
+  display: flex;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 25px;
+}
+
+.nav2 > a {
+  transition: 0.5s ease-in-out all;
+}
+
+.nav2 > a:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+@media (max-width: 850px) {
+  nav > div {
+    display: none;
+  }
+  .bars {
+    display: block !important;
+    background-color: inherit;
+    border: none;
+    font-size: 20px;
+  }
+  .profile-links {
+    top: 426px;
+    left: 55px;
+  }
+}
+
+/* nav {
   top: 0;
   background: transparent;
-  /* background: #f16121; */
   font-weight: 500;
   text-transform: uppercase;
   z-index: 100;
   height: 55px;
 }
-
-/* nav a {
-  color: white;
-} */
 
 .nav-link {
   color: black;
@@ -43,7 +191,7 @@ nav a:hover {
     left: 0;
     right: auto;
   }
-}
+} */
 
 .auth-form {
   position: absolute;
@@ -689,10 +837,47 @@ nav a:hover {
 }
 
 .most-rated {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
   width: 100%;
   height: 50vh;
   border-top: 2px dashed #da9816;
   border-bottom: 2px dashed #da9816;
+}
+
+.mr-div {
+  height: 300px;
+  width: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mr-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 100%;
+  left: 0;
+  height: 15%;
+  width: 100%;
+  border: none;
+  background-color: #da9816;
+  color: white;
+  font-size: 15px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  transition: 0.5s ease-in-out all;
+}
+
+.mr-btn:hover {
+  color: white;
+}
+
+.mr-div:hover > .mr-btn {
+  top: 85%;
 }
 
 /* Menu Section */

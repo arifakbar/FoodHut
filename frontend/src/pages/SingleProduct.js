@@ -129,7 +129,7 @@ function SingleProduct(props) {
         <img
           src={balckBg1}
           alt="NF"
-          style={{ position: "absolute", top: "79%", right: "0%" }}
+          style={{ position: "absolute", top: "50%", right: "0%" }}
         />
         <img
           src={balckBg2}

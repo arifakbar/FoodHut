@@ -54,7 +54,10 @@ function History(props) {
           <Spin size="large" />
         </div>
       ) : (
-        <div className="login-container">
+        <div
+          className="login-container "
+          style={{ height: "auto", paddingBottom: "15px" }}
+        >
           <img
             src={balckBg1}
             alt="NF"
@@ -65,7 +68,7 @@ function History(props) {
             alt="NF"
             style={{ position: "absolute", bottom: "0%", left: "0" }}
           />
-          <div className="login-heading">
+          <div className="login-heading mt-3">
             <hr />
             <h4 className="text-center m-0">Purchase History</h4>
             <hr />

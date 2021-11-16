@@ -2,6 +2,9 @@ const Product = require("../models/product");
 const slugify = require("slugify");
 const User = require("../models/user");
 
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Types;
+
 exports.productsCount = async (req, res, next) => {
   try {
     const total = await Product.find().estimatedDocumentCount();
@@ -227,6 +230,42 @@ exports.filterProducts = async (req, res, next) => {
       res
         .status(200)
         .json({ data: products, message: "Products filtered successfully." });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
+exports.mostRated = async (req, res, next) => {
+  try {
+    const { type } = req.body;
+    if (type === "full-course") {
+      const products = await Product.aggregate([
+        { $match: { category: ObjectId("615496563223dc77b6b85911") } },
+        {
+          $addFields: {
+            rating_avg: { $avg: "$ratings.star" },
+          },
+        },
+        { $sort: { rating_avg: -1 } },
+      ]).limit(5);
+      res
+        .status(200)
+        .json({ data: products, message: "Products fetched successfully." });
+    } else {
+      const products = await Product.aggregate([
+        { $match: { category: ObjectId("615495973223dc77b6b85909") } },
+        {
+          $addFields: {
+            rating_avg: { $avg: "$ratings.star" },
+          },
+        },
+        { $sort: { rating_avg: -1 } },
+      ]).limit(5);
+      res
+        .status(200)
+        .json({ data: products, message: "Products fetched successfully." });
     }
   } catch (err) {
     console.log(err);

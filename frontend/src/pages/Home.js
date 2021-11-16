@@ -64,7 +64,7 @@ function Home() {
             </Link>
           </div>
         </div>
-        <MostRated type="cuisine" />
+        <MostRated type="full-course" />
         <div className="home-coupons">
           <h3>The Ultimate Gift</h3>
           <div className="coupon-container">

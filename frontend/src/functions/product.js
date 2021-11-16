@@ -70,3 +70,9 @@ export const filterProducts = async (filter) => {
     filter,
   });
 };
+
+export const mostRated = async (type) => {
+  return await axios.post(process.env.REACT_APP_API + "/most-rated", {
+    type: type,
+  });
+};

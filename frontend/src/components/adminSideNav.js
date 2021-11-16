@@ -46,6 +46,9 @@ function AdminSideNav() {
       <Link to="/admin/coupons">
         <div>Coupons</div>
       </Link>
+      <Link to="/admin/press">
+        <div>Press</div>
+      </Link>
       <Link to="/admin/resetPassword">
         <div>Password</div>
       </Link>

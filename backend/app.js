@@ -17,6 +17,7 @@ const reservationRoutes = require("./routes/reservation");
 const stripeRoutes = require("./routes/stripe");
 const orderRoutes = require("./routes/order");
 const contactRoutes = require("./routes/contact");
+const pressRoutes = require("./routes/press");
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use("/api", reservationRoutes);
 app.use("/api", stripeRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", contactRoutes);
+app.use("/api", pressRoutes);
 
 //port
 const port = process.env.PORT || 8000;

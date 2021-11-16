@@ -49,6 +49,8 @@ import SingleSubCategory from "./pages/SingleSubCategory";
 import AdminContact from "./pages/admin/adminContact";
 import OrderTrack from "./pages/user/orderTrack";
 import NF_404 from "./pages/NF_404";
+import AdminPress from "./pages/admin/AdminPress";
+import EditPress from "./pages/admin/editPress";
 
 function App(props) {
   useEffect(() => {
@@ -113,6 +115,7 @@ function App(props) {
         <AdminRoute path="/admin/product" exact component={Product} />
         <AdminRoute path="/admin/products" exact component={Products} />
         <AdminRoute path="/admin/category" exact component={Category} />
+        <AdminRoute path="/admin/press" exact component={AdminPress} />
         <AdminRoute path="/admin/sub-category" exact component={SubCategory} />
         <AdminRoute path="/admin/coupons" exact component={Coupons} />
         <AdminRoute
@@ -120,6 +123,7 @@ function App(props) {
           exact
           component={EditCategory}
         />
+        <AdminRoute path="/edit-press/:id" exact component={EditPress} />
         <AdminRoute
           path="/admin/resetPassword"
           exact
