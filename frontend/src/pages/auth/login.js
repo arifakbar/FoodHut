@@ -24,8 +24,10 @@ function Login(props) {
     }
   }, [user]);
 
-  const [email, setEmail] = useState("0126CS181030@oriental.ac.in");
-  const [password, setPassword] = useState("newpassword");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // 0126CS181030@oriental.ac.in - newpassword
 
   const handleSubmit = async (e) => {
     e.preventDefault();
