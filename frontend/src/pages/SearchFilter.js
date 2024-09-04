@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { Spin, Card } from "antd";
+import { Spin, Card, Pagination } from "antd";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
-import { searchProduct, filterProducts } from "../functions/product";
+import {
+  searchProduct,
+  filterProducts,
+  productsCount,
+} from "../functions/product";
 import { getAllSubCategoris } from "../functions/subCategory";
 import { getAllCategories } from "../functions/category";
 import Star from "../components/Star";
@@ -24,21 +28,37 @@ function SearchFilter(props) {
   const [cats, setCats] = useState([]);
   const [subs, setSubs] = useState([]);
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     loadProducts({});
-  }, []);
+    totalProducts();
+  }, [page]);
 
   useEffect(() => {
     loadCategories();
     loadSubCategories();
   }, []);
 
+  const totalProducts = async () => {
+    try {
+      setLoading(true);
+      const res = await productsCount();
+      setCount(res.data.data);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      toast.error(err.message);
+    }
+  };
+
   const loadProducts = async (args) => {
     try {
       setLoading(true);
-      const res = await filterProducts(args);
+      const res = await filterProducts(args, page);
       setProducts(res.data.data);
+      setCount(res.data.count);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -136,11 +156,6 @@ function SearchFilter(props) {
         className="container-fluid searchFilter-container position-relative"
         style={{ minHeight: "124vh" }}
       >
-        <img
-          src={balckBg1}
-          alt="NF"
-          style={{ position: "absolute", top: "63.5%", right: "0%" }}
-        />
         <img
           src={balckBg2}
           alt="NF"
@@ -371,6 +386,20 @@ function SearchFilter(props) {
                         </div>
                       );
                     })}
+                  <br />
+                  <div
+                    style={{
+                      width: "100%",
+                      textAlign: "center",
+                      marginTop: "20px",
+                    }}
+                  >
+                    <Pagination
+                      current={page}
+                      total={(count / 6) * 10}
+                      onChange={(value) => setPage(value)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

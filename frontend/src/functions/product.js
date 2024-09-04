@@ -22,6 +22,13 @@ export const getAllProducts = async (sort, order, page) => {
   });
 };
 
+export const filterProducts = async (filter, page) => {
+  return await axios.post(process.env.REACT_APP_API + "/filter/products", {
+    filter,
+    page,
+  });
+};
+
 export const getProduct = async (productId) => {
   return await axios.get(process.env.REACT_APP_API + "/product/" + productId);
 };
@@ -63,12 +70,6 @@ export const productStar = async (authToken, star, productId) => {
       headers: { authToken: authToken },
     }
   );
-};
-
-export const filterProducts = async (filter) => {
-  return await axios.post(process.env.REACT_APP_API + "/filter/products", {
-    filter,
-  });
 };
 
 export const mostRated = async (type) => {

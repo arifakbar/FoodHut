@@ -22,7 +22,7 @@ function SingleCategory(props) {
 
   useEffect(() => {
     loadProducts();
-  }, [loadProducts]);
+  }, []);
 
   const loadProducts = async () => {
     try {
@@ -61,11 +61,6 @@ function SingleCategory(props) {
   };
   return (
     <div className="container-fluid position-relative">
-      <img
-        src={balckBg1}
-        alt="NF"
-        style={{ position: "absolute", top: "58%", right: "0%" }}
-      />
       <img
         src={balckBg2}
         alt="NF"
