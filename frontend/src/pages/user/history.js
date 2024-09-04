@@ -133,12 +133,12 @@ function History(props) {
                           {o.products.map((p) => {
                             return (
                               <div
-                                key={p.product._id}
+                                key={p?.product?._id}
                                 className="my-2 d-flex flex-column gap-3"
                               >
                                 <div>
                                   <img
-                                    src={p.product.images[0].url}
+                                    src={p.product?.images[0].url}
                                     style={{
                                       height: "150px",
                                       width: "150px",
@@ -147,10 +147,10 @@ function History(props) {
                                   />
                                 </div>
                                 <div>
-                                  <p>{p.product.title}</p>
+                                  <p>{p?.product?.title}</p>
                                   <p>
-                                    {p.count} X Rs. {p.product.price} = Rs.{" "}
-                                    {p.count * p.product.price}
+                                    {p?.count} X Rs. {p?.product?.price} = Rs.{" "}
+                                    {p?.count * p?.product?.price}
                                   </p>
                                 </div>
                               </div>

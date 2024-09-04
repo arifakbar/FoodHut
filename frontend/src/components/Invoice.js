@@ -31,16 +31,16 @@ const Invoice = ({ order }) => (
         <TableBody>
           <DataTableCell
             style={styles.center}
-            getContent={(x) => x.product.title}
+            getContent={(x) => x?.product?.title}
           />
           <DataTableCell
             style={styles.center}
-            getContent={(x) => `Rs. ${x.product.price}`}
+            getContent={(x) => `Rs. ${x?.product?.price}`}
           />
-          <DataTableCell style={styles.center} getContent={(x) => x.count} />
+          <DataTableCell style={styles.center} getContent={(x) => x?.count} />
           <DataTableCell
             style={styles.center}
-            getContent={(x) => x.product.price * x.count}
+            getContent={(x) => x?.product?.price * x?.count}
           />
         </TableBody>
       </Table>

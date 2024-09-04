@@ -76,11 +76,6 @@ function Cart(props) {
   return (
     <div className="container-fluid cart-container">
       <img
-        src={balckBg1}
-        alt="NF"
-        style={{ position: "absolute", top: "50%", right: "-5%" }}
-      />
-      <img
         src={balckBg2}
         alt="NF"
         style={{ position: "absolute", top: "0", left: "-5%" }}

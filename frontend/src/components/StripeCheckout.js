@@ -26,7 +26,7 @@ function StripeCheckout(props) {
 
   useEffect(() => {
     createPaymentIntentFunction();
-  }, [createPaymentIntentFunction]);
+  }, []);
 
   const createPaymentIntentFunction = async () => {
     const res = await createPaymentIntent(user.token, coupon);
