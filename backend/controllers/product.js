@@ -38,6 +38,63 @@ exports.getAllProducts = async (req, res, next) => {
   }
 };
 
+exports.filterProducts = async (req, res, next) => {
+  try {
+    const { filter, page } = req.body;
+    const currentPage = page || 1;
+    const perPage = 6;
+    if (filter.price) {
+      const count = await Product.countDocuments({
+        price: { $gte: filter.price[0], $lte: filter.price[1] },
+      });
+      const products = await Product.find({
+        price: { $gte: filter.price[0], $lte: filter.price[1] },
+      })
+        .skip((currentPage - 1) * perPage)
+        .limit(perPage);
+      res.status(200).json({
+        data: products,
+        count: count,
+        message: "Products filtered successfully.",
+      });
+    } else if (filter.stars) {
+      const aggregates = await Product.aggregate([
+        {
+          $project: {
+            document: "$$ROOT",
+            floorAverage: {
+              $floor: { $avg: "$ratings.star" },
+            },
+          },
+        },
+        { $match: { floorAverage: filter.stars } },
+      ]).limit(12);
+      const count = await Product.countDocuments({ _id: aggregates });
+      const products = await Product.find({ _id: aggregates })
+        .skip((currentPage - 1) * perPage)
+        .limit(perPage);
+      res.status(200).json({
+        data: products,
+        count: count,
+        message: "Products filtered successfully.",
+      });
+    } else {
+      const count = await Product.countDocuments(filter);
+      const products = await Product.find(filter)
+        .skip((currentPage - 1) * perPage)
+        .limit(perPage);
+      res.status(200).json({
+        data: products,
+        count: count,
+        message: "Products filtered successfully.",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err: "Some error occured" });
+  }
+};
+
 exports.getProduct = async (req, res, next) => {
   const { productId } = req.params;
   try {
@@ -196,44 +253,6 @@ exports.productRating = async (req, res, next) => {
     res.status(500).json({
       error: "Some error occured!",
     });
-  }
-};
-
-exports.filterProducts = async (req, res, next) => {
-  try {
-    const { filter } = req.body;
-    if (filter.price) {
-      const products = await Product.find({
-        price: { $gte: filter.price[0], $lte: filter.price[1] },
-      });
-      res
-        .status(200)
-        .json({ data: products, message: "Products filtered successfully." });
-    } else if (filter.stars) {
-      const aggregates = await Product.aggregate([
-        {
-          $project: {
-            document: "$$ROOT",
-            floorAverage: {
-              $floor: { $avg: "$ratings.star" },
-            },
-          },
-        },
-        { $match: { floorAverage: filter.stars } },
-      ]).limit(12);
-      const products = await Product.find({ _id: aggregates });
-      res
-        .status(200)
-        .json({ data: products, message: "Products filtered successfully." });
-    } else {
-      const products = await Product.find(filter);
-      res
-        .status(200)
-        .json({ data: products, message: "Products filtered successfully." });
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ err: "Some error occured" });
   }
 };
 
