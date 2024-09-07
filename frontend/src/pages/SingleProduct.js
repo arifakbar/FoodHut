@@ -31,7 +31,7 @@ function SingleProduct(props) {
   useEffect(() => {
     loadProduct();
     loadRelated();
-  }, [productId, loadProduct, loadRelated]);
+  }, [productId]);
 
   useEffect(() => {
     if (product && product.ratings && user) {
@@ -166,7 +166,11 @@ function SingleProduct(props) {
                     {product && product.ratings && product.ratings.length > 0
                       ? showAverageRating(product)
                       : "No ratings yet!"}
-                    <button className="btn btn-sm btn-danger">
+                    <button
+                      className="btn btn-sm btn-danger"
+                      style={{ minHeight: "30px" }}
+                      onClick={() => {}}
+                    >
                       {product.veg ? "Veg" : "Non-veg"}
                     </button>
                     <hr style={{ height: "1px", width: "100%" }} />
