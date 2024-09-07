@@ -6,3 +6,5 @@ Then,
 
 To start : npm start 
             on both folders
+
+Stripe Testing Code: 4000 0035 6000 0008
