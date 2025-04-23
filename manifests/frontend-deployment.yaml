@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-container
+          image: acearif/foodhut:frontend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: REACT_APP_REGISTER_REDIRECT_URL
+              value: https://foodhut-zpju.onrender.com/register/complete
+            - name: REACT_APP_FORGOT_PASSWORD_REDIRECT
+              value: https://foodhut-zpju.onrender.com/login
+            - name: REACT_APP_STRIPE_KEY
+              value: pk_test_51IhUG2SFyEg8AS59joeULfWuFCKtpKDcTOUDX00rjHLLkvA1uxAR0uAMNw5Xys5xD3w7XycA98RxDnNv0lXde78g00PKBYd1NH

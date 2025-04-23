@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const createOrder = async (authToken, stripeResponse) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/user/order",
+    "/api/user/order",
     {
       stripeResponse: stripeResponse,
     },
@@ -14,7 +14,7 @@ export const createOrder = async (authToken, stripeResponse) => {
 
 export const getAllOrders = async (authToken, page) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/orders",
+    "/api/orders",
     {
       page: page,
     },
@@ -27,18 +27,18 @@ export const getAllOrders = async (authToken, page) => {
 };
 
 export const getUserOrders = async (authToken) => {
-  return await axios.get(process.env.REACT_APP_API + "/user/orders", {
+  return await axios.get("/api/user/orders", {
     headers: { authToken: authToken },
   });
 };
 
 export const ordersCount = async () => {
-  return await axios.get(process.env.REACT_APP_API + "/orders/total");
+  return await axios.get("/api/orders/total");
 };
 
 export const updateOrderStatus = async (authToken, orderId, orderStatus) => {
   return await axios.put(
-    process.env.REACT_APP_API + "/order/" + orderId,
+    "/api/order/" + orderId,
     {
       orderStatus: orderStatus,
     },
@@ -50,7 +50,7 @@ export const updateOrderStatus = async (authToken, orderId, orderStatus) => {
 
 export const createCashOrderForUser = async (authToken, couponApplied, COD) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/user/cash-order",
+    "/api/user/cash-order",
     {
       COD: COD,
       couponApplied: couponApplied,
@@ -64,7 +64,7 @@ export const createCashOrderForUser = async (authToken, couponApplied, COD) => {
 };
 
 export const getOrderStatus = async (authToken, orderId) => {
-  return await axios.get(process.env.REACT_APP_API + "/order/" + orderId, {
+  return await axios.get("/api/order/" + orderId, {
     headers: { authToken: authToken },
   });
 };

@@ -60,7 +60,7 @@ function Products(props) {
         p.images &&
           p.images.map(async (i) => {
             await axios.post(
-              process.env.REACT_APP_API + "/deleteImages",
+              "/api/deleteImages",
               { public_id: i.public_id },
               {
                 headers: {

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getAllReservations = async (authToken) => {
-  return await axios.get(process.env.REACT_APP_API + "/reservations", {
+  return await axios.get("/api/reservations", {
     headers: {
       authToken: authToken,
     },
@@ -9,22 +9,15 @@ export const getAllReservations = async (authToken) => {
 };
 
 export const getUserReservations = async (authToken, id) => {
-  return await axios.get(
-    process.env.REACT_APP_API + "/user/reservation/" + id,
-    {
-      headers: { authToken: authToken },
-    }
-  );
+  return await axios.get("/api/user/reservation/" + id, {
+    headers: { authToken: authToken },
+  });
 };
 
 export const bookReservation = async (authToken, reservationBody) => {
-  return await axios.post(
-    process.env.REACT_APP_API + "/reservation",
-    reservationBody,
-    {
-      headers: { authToken: authToken },
-    }
-  );
+  return await axios.post("/api/reservation", reservationBody, {
+    headers: { authToken: authToken },
+  });
 };
 
 export const updateReservationStatus = async (
@@ -33,17 +26,14 @@ export const updateReservationStatus = async (
   status
 ) => {
   return await axios.put(
-    process.env.REACT_APP_API + "/reservation/" + reservationId,
+    "/api/reservation/" + reservationId,
     { status: status },
     { headers: { authToken: authToken } }
   );
 };
 
 export const deleteReservation = async (authToken, reservationId) => {
-  return await axios.delete(
-    process.env.REACT_APP_API + "/reservation/" + reservationId,
-    {
-      headers: { authToken: authToken },
-    }
-  );
+  return await axios.delete("/api/reservation/" + reservationId, {
+    headers: { authToken: authToken },
+  });
 };

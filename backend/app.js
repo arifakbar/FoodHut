@@ -52,12 +52,12 @@ app.use("/api", pressRoutes);
 //port
 const port = process.env.PORT || 8000;
 
-const server = app.listen(port, () =>
+const server = app.listen(port, "0.0.0.0", () =>
   console.log(`Server is running on port ${port}`)
 );
 
 const io = socket(server, {
-  cors: { origin: "http://localhost:3000" },
+  cors: { origin: "*" },
 });
 
 io.on("connection", (socket) => {

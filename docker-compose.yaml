@@ -1,0 +1,25 @@
+services:
+  backend:
+    build: ./backend
+    image: acearif/foodhut:backend
+    environment:
+      - PORT=8000
+      - DATABASE=mongodb://admin:23CZ3foMoJSRVuhF@cluster0-shard-00-00.i7ss7.mongodb.net:27017,cluster0-shard-00-01.i7ss7.mongodb.net:27017,cluster0-shard-00-02.i7ss7.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-8891xl-shard-0&authSource=admin&retryWrites=true&w=majority
+      - CLOUDINARY_CLOUD_NAME=dkiwa73vl
+      - CLOUDINARY_API_KEY=751534111462923
+      - CLOUDINARY_API_SECRET=dH1LoTANkHSv1nzoCl4MVSAMiDM
+      - STRIPE_SECRET=sk_test_51IhUG2SFyEg8AS59LGp3rpJFmXsoCpYUbYC49JbBtpErx0Qnv59d9nNCU4kbO2Jy9iaelaqgDBDBurscgKK4zW7C00ba5wVLYg
+    ports:
+      - 8000:8000
+  frontend:
+    build: ./frontend
+    image: acearif/foodhut:frontend
+    environment:
+      - REACT_APP_REGISTER_REDIRECT_URL=https://foodhut-zpju.onrender.com/register/complete
+      - REACT_APP_FORGOT_PASSWORD_REDIRECT = https://foodhut-zpju.onrender.com/login
+      - REACT_APP_API=http://localhost:8000/api
+      - REACT_APP_STRIPE_KEY=pk_test_51IhUG2SFyEg8AS59joeULfWuFCKtpKDcTOUDX00rjHLLkvA1uxAR0uAMNw5Xys5xD3w7XycA98RxDnNv0lXde78g00PKBYd1NH
+    ports:
+      - 80:80
+    depends_on:
+      - backend

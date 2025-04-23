@@ -3,7 +3,7 @@ import history from "../history";
 
 export const createOrUpdateUser = async (authToken) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/create-or-update-user",
+    "/api/create-or-update-user",
     {},
     {
       headers: {
@@ -15,7 +15,7 @@ export const createOrUpdateUser = async (authToken) => {
 
 export const currentUser = async (authToken) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/current-user",
+    "/api/current-user",
     {},
     {
       headers: { authToken: authToken },
@@ -25,7 +25,7 @@ export const currentUser = async (authToken) => {
 
 export const currentAdmin = async (authToken) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/current-admin",
+    "/api/current-admin",
     {},
     {
       headers: {
@@ -37,7 +37,7 @@ export const currentAdmin = async (authToken) => {
 
 export const updateUsername = async (username, authToken) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/update-username",
+    "/api/update-username",
     {
       username: username,
     },
@@ -51,7 +51,7 @@ export const updateUsername = async (username, authToken) => {
 
 export const updateAddress = async (address, authToken) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/update-address",
+    "/api/update-address",
     {
       address: address,
     },
@@ -65,7 +65,7 @@ export const updateAddress = async (address, authToken) => {
 
 export const sendOTP = async (authToken, number) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/user/sendOTP",
+    "/api/user/sendOTP",
     {
       number: number,
     },
@@ -77,7 +77,7 @@ export const sendOTP = async (authToken, number) => {
 
 export const verifyOTP = async (authToken, number, OTP) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/user/verifyOTP",
+    "/api/user/verifyOTP",
     {
       number: number,
       OTP: OTP,
@@ -90,7 +90,7 @@ export const verifyOTP = async (authToken, number, OTP) => {
 
 export const userCart = async (cart, authToken) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/user/cart",
+    "/api/user/cart",
     {
       cart: cart,
     },
@@ -103,7 +103,7 @@ export const userCart = async (cart, authToken) => {
 };
 
 export const getUserCart = async (authToken) => {
-  return await axios.get(process.env.REACT_APP_API + "/user/cart", {
+  return await axios.get("/api/user/cart", {
     headers: {
       authToken: authToken,
     },
@@ -111,7 +111,7 @@ export const getUserCart = async (authToken) => {
 };
 
 export const deleteUserCart = async (authToken) => {
-  return await axios.delete(process.env.REACT_APP_API + "/user/cart", {
+  return await axios.delete("/api/user/cart", {
     headers: {
       authToken: authToken,
     },
@@ -120,7 +120,7 @@ export const deleteUserCart = async (authToken) => {
 
 export const applyDiscountCoupon = async (authToken, coupon) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/user/cart/coupon",
+    "/api/user/cart/coupon",
     {
       coupon: coupon,
     },
@@ -140,14 +140,14 @@ export const roleBasedRedirect = (res) => {
 };
 
 export const userWishlists = async (authToken) => {
-  return await axios.get(process.env.REACT_APP_API + "/user/wishlists", {
+  return await axios.get("/api/user/wishlists", {
     headers: { authToken: authToken },
   });
 };
 
 export const addToUserWishlist = async (authToken, productId) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/user/wishlist",
+    "/api/user/wishlist",
     {
       productId: productId,
     },
@@ -161,7 +161,7 @@ export const addToUserWishlist = async (authToken, productId) => {
 
 export const removeFromWishlist = async (authToken, productId) => {
   return await axios.put(
-    process.env.REACT_APP_API + "/user/wishlist/" + productId,
+    "/api/user/wishlist/" + productId,
     {},
     {
       headers: {

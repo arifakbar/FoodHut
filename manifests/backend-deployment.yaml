@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend-container
+          image: acearif/foodhut:backend
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "8000"
+            - name: DATABASE
+              value: mongodb://admin:23CZ3foMoJSRVuhF@cluster0-shard-00-00.i7ss7.mongodb.net:27017,cluster0-shard-00-01.i7ss7.mongodb.net:27017,cluster0-shard-00-02.i7ss7.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-8891xl-shard-0&authSource=admin&retryWrites=true&w=majority
+            - name: CLOUDINARY_CLOUD_NAME
+              value: dkiwa73vl
+            - name: CLOUDINARY_API_KEY
+              value: "751534111462923"
+            - name: CLOUDINARY_API_SECRET
+              value: dH1LoTANkHSv1nzoCl4MVSAMiDM
+            - name: STRIPE_SECRET
+              value: sk_test_51IhUG2SFyEg8AS59LGp3rpJFmXsoCpYUbYC49JbBtpErx0Qnv59d9nNCU4kbO2Jy9iaelaqgDBDBurscgKK4zW7C00ba5wVLYg

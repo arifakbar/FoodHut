@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { Spin } from "antd";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+// import { PDFDownloadLink } from "@react-pdf/renderer";
 
 import UserSideNav from "../../components/userSideNav";
 import { getUserOrders } from "../../functions/order";
@@ -36,13 +36,14 @@ function History(props) {
 
   const showDownloadLink = (order) => {
     return (
-      <PDFDownloadLink
-        className="btn btn-danger mx-3"
-        document={<Invoice order={order} />}
-        fileName="invoice.pdf"
-      >
-        Invoice
-      </PDFDownloadLink>
+      <div></div>
+      // <PDFDownloadLink
+      //   className="btn btn-danger mx-3"
+      //   document={<Invoice order={order} />}
+      //   fileName="invoice.pdf"
+      // >
+      //   Invoice
+      // </PDFDownloadLink>
     );
   };
 

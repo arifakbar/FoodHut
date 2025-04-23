@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getContacts = async (authToken) => {
-  return await axios.get(process.env.REACT_APP_API + "/contacts", {
+  return await axios.get("/api/contacts", {
     headers: { authToken: authToken },
   });
 };
@@ -14,7 +14,7 @@ export const createContact = async (
   message
 ) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/contact",
+    "/api/contact",
     {
       name,
       email,
@@ -28,12 +28,9 @@ export const createContact = async (
 };
 
 export const deleteContact = async (authToken, contactId) => {
-  return await axios.delete(
-    process.env.REACT_APP_API + "/contact/" + contactId,
-    {
-      headers: {
-        authToken: authToken,
-      },
-    }
-  );
+  return await axios.delete("/api/contact/" + contactId, {
+    headers: {
+      authToken: authToken,
+    },
+  });
 };

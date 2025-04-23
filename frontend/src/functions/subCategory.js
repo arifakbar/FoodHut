@@ -1,16 +1,16 @@
 import axios from "axios";
 
 export const getAllSubCategoris = async () => {
-  return await axios.get(process.env.REACT_APP_API + "/sub-categories");
+  return await axios.get("/api/sub-categories");
 };
 
 export const getSubCategory = async (slug) => {
-  return await axios.get(process.env.REACT_APP_API + "/sub-category/" + slug);
+  return await axios.get("/api/sub-category/" + slug);
 };
 
 export const addSubCategory = async (authToken, name, parent) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/sub-category",
+    "/api/sub-category",
     {
       name: name,
       parent: parent,
@@ -23,7 +23,7 @@ export const addSubCategory = async (authToken, name, parent) => {
 
 export const updateSubCategory = async (authToken, name, parent, slug) => {
   return await axios.put(
-    process.env.REACT_APP_API + "/sub-category/" + slug,
+    "/api/sub-category/" + slug,
     {
       name: name,
       parent: parent,
@@ -35,16 +35,11 @@ export const updateSubCategory = async (authToken, name, parent, slug) => {
 };
 
 export const deleteSubCategory = async (authToken, slug) => {
-  return await axios.delete(
-    process.env.REACT_APP_API + "/sub-category/" + slug,
-    {
-      headers: { authToken: authToken },
-    }
-  );
+  return await axios.delete("/api/sub-category/" + slug, {
+    headers: { authToken: authToken },
+  });
 };
 
 export const getSubCategoryByParent = async (id) => {
-  return await axios.get(
-    process.env.REACT_APP_API + "/sub-category-by-parent/" + id
-  );
+  return await axios.get("/api/sub-category-by-parent/" + id);
 };

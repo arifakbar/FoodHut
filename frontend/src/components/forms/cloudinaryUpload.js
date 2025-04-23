@@ -23,7 +23,7 @@ function CloudinaryUpload({ images, setImages, user }) {
           (uri) => {
             return axios
               .post(
-                process.env.REACT_APP_API + "/uploadImages",
+                "/api/uploadImages",
                 {
                   image: uri,
                 },
@@ -53,7 +53,7 @@ function CloudinaryUpload({ images, setImages, user }) {
     setLoading(true);
     axios
       .post(
-        process.env.REACT_APP_API + "/deleteImages",
+        "/api/deleteImages",
         { public_id: id },
         {
           headers: {

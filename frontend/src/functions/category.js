@@ -1,16 +1,16 @@
 import axios from "axios";
 
 export const getAllCategories = async () => {
-  return await axios.get(process.env.REACT_APP_API + "/categories");
+  return await axios.get("/api/categories");
 };
 
 export const getCategory = async (slug) => {
-  return await axios.get(process.env.REACT_APP_API + "/category/" + slug);
+  return await axios.get("/api/category/" + slug);
 };
 
 export const addCategory = async (authToken, name) => {
   return await axios.post(
-    process.env.REACT_APP_API + "/category",
+    "/api/category",
     {
       name: name,
     },
@@ -19,17 +19,13 @@ export const addCategory = async (authToken, name) => {
 };
 
 export const updateCategory = async (authToken, category, slug) => {
-  return await axios.put(
-    process.env.REACT_APP_API + "/category/" + slug,
-    category,
-    {
-      headers: { authToken: authToken },
-    }
-  );
+  return await axios.put("/api/category/" + slug, category, {
+    headers: { authToken: authToken },
+  });
 };
 
 export const deleteCategory = async (authToken, slug) => {
-  return await axios.delete(process.env.REACT_APP_API + "/category/" + slug, {
+  return await axios.delete("/api/category/" + slug, {
     headers: {
       authToken: authToken,
     },
